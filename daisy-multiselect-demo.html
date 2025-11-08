@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DaisyUI Multi-Select Component</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="p-8 bg-base-100">
+  <div class="max-w-2xl mx-auto space-y-8">
+    <h1 class="text-4xl font-bold mb-8">DaisyUI Multi-Select with Checkboxes</h1>
+    
+    <!-- Example 1: Basic Multi-Select -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">1. Basic Multi-Select</h2>
+      <daisy-multiselect placeholder="Select your favorite fruits">
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry">Cherry</option>
+        <option value="date">Date</option>
+        <option value="elderberry">Elderberry</option>
+        <option value="fig">Fig</option>
+        <option value="grape">Grape</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 2: Pre-selected Options -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">2. With Pre-selected Options</h2>
+      <daisy-multiselect placeholder="Select programming languages">
+        <option value="js" selected>JavaScript</option>
+        <option value="py" selected>Python</option>
+        <option value="java">Java</option>
+        <option value="cpp">C++</option>
+        <option value="ruby">Ruby</option>
+        <option value="go">Go</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 2.5: Chip Style Display -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">3. Chip Style Display</h2>
+      <p class="text-sm mb-4 opacity-80">Selected items appear as removable chips/badges. Click the X to remove individual items. Following Choices.js pattern: all selected items are shown, container grows vertically.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text">Basic Chip Style</span></label>
+          <daisy-multiselect placeholder="Select your tech stack" chip-style checked-color="primary">
+            <option value="react" selected>React</option>
+            <option value="vue" selected>Vue</option>
+            <option value="angular">Angular</option>
+            <option value="svelte" selected>Svelte</option>
+            <option value="nextjs">Next.js</option>
+            <option value="nuxt">Nuxt</option>
+            <option value="gatsby">Gatsby</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">Chip Style with Different Colors</span></label>
+          <daisy-multiselect placeholder="Select skills" chip-style checked-color="secondary" size="md">
+            <option value="html" selected>HTML</option>
+            <option value="css" selected>CSS</option>
+            <option value="js" selected>JavaScript</option>
+            <option value="ts">TypeScript</option>
+            <option value="node">Node.js</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">Many Chips (Container grows vertically)</span></label>
+          <daisy-multiselect placeholder="Select programming languages" chip-style checked-color="accent">
+            <option value="js" selected>JavaScript</option>
+            <option value="py" selected>Python</option>
+            <option value="java" selected>Java</option>
+            <option value="cpp" selected>C++</option>
+            <option value="ruby" selected>Ruby</option>
+            <option value="go" selected>Go</option>
+            <option value="rust" selected>Rust</option>
+            <option value="swift" selected>Swift</option>
+            <option value="kotlin" selected>Kotlin</option>
+            <option value="php" selected>PHP</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">Large Chip Style</span></label>
+          <daisy-multiselect placeholder="Select frameworks" chip-style size="lg" checked-color="success">
+            <option value="express" selected>Express</option>
+            <option value="fastify" selected>Fastify</option>
+            <option value="koa">Koa</option>
+            <option value="hapi">Hapi</option>
+            <option value="nestjs">NestJS</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">Small Chip Style with Warning Color</span></label>
+          <daisy-multiselect placeholder="Select databases" chip-style size="sm" checked-color="warning">
+            <option value="postgres" selected>PostgreSQL</option>
+            <option value="mysql" selected>MySQL</option>
+            <option value="mongo">MongoDB</option>
+            <option value="redis">Redis</option>
+            <option value="sqlite">SQLite</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 2.6: Highlight Attribute -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">4. Highlight Selected Items</h2>
+      <p class="text-sm mb-4 opacity-80">By default, only the checkbox is colored. Add the <code>highlight</code> attribute to apply background color to the entire selected item.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text">Without Highlight (Default)</span></label>
+          <daisy-multiselect placeholder="Select frameworks" checked-color="primary">
+            <option value="react" selected>React</option>
+            <option value="vue" selected>Vue</option>
+            <option value="angular">Angular</option>
+            <option value="svelte">Svelte</option>
+            <option value="nextjs">Next.js</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">With Highlight</span></label>
+          <daisy-multiselect placeholder="Select frameworks" checked-color="primary" highlight>
+            <option value="react" selected>React</option>
+            <option value="vue" selected>Vue</option>
+            <option value="angular">Angular</option>
+            <option value="svelte">Svelte</option>
+            <option value="nextjs">Next.js</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">Highlight with Secondary Color</span></label>
+          <daisy-multiselect placeholder="Select languages" checked-color="secondary" highlight>
+            <option value="js" selected>JavaScript</option>
+            <option value="py" selected>Python</option>
+            <option value="java">Java</option>
+            <option value="cpp">C++</option>
+            <option value="ruby">Ruby</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 3: Input Colors -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">5. Input Colors</h2>
+      <p class="text-sm mb-4 opacity-80">Apply DaisyUI input border colors using the <code>input-color</code> attribute.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text font-semibold">Primary Input Color</span></label>
+          <daisy-multiselect placeholder="Primary color" input-color="primary" checked-color="primary">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Secondary Input Color</span></label>
+          <daisy-multiselect placeholder="Secondary color" input-color="secondary" checked-color="secondary">
+            <option value="a">Option A</option>
+            <option value="b" selected>Option B</option>
+            <option value="c">Option C</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Accent Input Color</span></label>
+          <daisy-multiselect placeholder="Accent color" input-color="accent" checked-color="accent">
+            <option value="x">Option X</option>
+            <option value="y" selected>Option Y</option>
+            <option value="z">Option Z</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Neutral Input Color</span></label>
+          <daisy-multiselect placeholder="Neutral color" input-color="neutral" checked-color="neutral">
+            <option value="i">Item I</option>
+            <option value="ii" selected>Item II</option>
+            <option value="iii">Item III</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Success Input Color</span></label>
+          <daisy-multiselect placeholder="Success color" input-color="success" checked-color="success">
+            <option value="alpha">Alpha</option>
+            <option value="beta" selected>Beta</option>
+            <option value="gamma">Gamma</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Warning Input Color</span></label>
+          <daisy-multiselect placeholder="Warning color" input-color="warning" checked-color="warning">
+            <option value="red">Red</option>
+            <option value="orange" selected>Orange</option>
+            <option value="yellow">Yellow</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Error Input Color</span></label>
+          <daisy-multiselect placeholder="Error color" input-color="error" checked-color="error">
+            <option value="first">First</option>
+            <option value="second" selected>Second</option>
+            <option value="third">Third</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text font-semibold">Info Input Color</span></label>
+          <daisy-multiselect placeholder="Info color" input-color="info" checked-color="info">
+            <option value="one">One</option>
+            <option value="two" selected>Two</option>
+            <option value="three">Three</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 4: Sizes -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">6. Sizes</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text">Extra Small (xs)</span></label>
+          <daisy-multiselect placeholder="Extra small select" size="xs">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text">Small (sm)</span></label>
+          <daisy-multiselect placeholder="Small select" size="sm">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text">Medium (md) - Default</span></label>
+          <daisy-multiselect placeholder="Medium select" size="md">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text">Large (lg)</span></label>
+          <daisy-multiselect placeholder="Large select" size="lg">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        <div>
+          <label class="label"><span class="label-text">Extra Large (xl)</span></label>
+          <daisy-multiselect placeholder="Extra large select" size="xl">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 5: With Disabled Options -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">7. With Disabled Options</h2>
+      <p class="text-sm mb-4 opacity-80">Demonstrate disabled options with all standard DaisyUI colors.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text font-semibold">Primary Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="primary">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js" selected>JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Secondary Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="secondary">
+            <option value="html">HTML</option>
+            <option value="css" selected>CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Accent Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="accent">
+            <option value="html" selected>HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue" selected>Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Neutral Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="neutral">
+            <option value="html">HTML</option>
+            <option value="css" selected>CSS</option>
+            <option value="js" selected>JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Success Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="success">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js" selected>JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue" selected>Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Warning Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="warning">
+            <option value="html" selected>HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Error Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="error">
+            <option value="html">HTML</option>
+            <option value="css" selected>CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Info Color</span></label>
+          <daisy-multiselect placeholder="Select your skills" checked-color="info">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js" selected>JavaScript</option>
+            <option value="react" disabled>React (Coming Soon)</option>
+            <option value="vue">Vue</option>
+            <option value="angular" disabled>Angular (Coming Soon)</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 6: Checkbox Colors -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">8. Checkbox Colors</h2>
+      <p class="text-sm mb-4 opacity-80">Use DaisyUI color names or hex colors for checkboxes.</p>
+      
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold mt-4">DaisyUI Colors</h3>
+        
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Primary Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="primary">
+            <option value="1">Item 1</option>
+            <option value="2" selected>Item 2</option>
+            <option value="3">Item 3</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Secondary Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="secondary">
+            <option value="a">Option A</option>
+            <option value="b" selected>Option B</option>
+            <option value="c">Option C</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Accent Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="accent">
+            <option value="x">Option X</option>
+            <option value="y" selected>Option Y</option>
+            <option value="z">Option Z</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Neutral Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="neutral">
+            <option value="alpha">Alpha</option>
+            <option value="beta" selected>Beta</option>
+            <option value="gamma">Gamma</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Success Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="success">
+            <option value="one">One</option>
+            <option value="two" selected>Two</option>
+            <option value="three">Three</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Warning Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="warning">
+            <option value="red">Red</option>
+            <option value="orange" selected>Orange</option>
+            <option value="yellow">Yellow</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Error Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="error">
+            <option value="first">First</option>
+            <option value="second" selected>Second</option>
+            <option value="third">Third</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Info Color</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="info">
+            <option value="i">Item I</option>
+            <option value="ii" selected>Item II</option>
+            <option value="iii">Item III</option>
+          </daisy-multiselect>
+        </div>
+
+        <h3 class="text-lg font-semibold mt-6">Custom Hex Colors</h3>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Color - Blue (#3B82F6)</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#3B82F6">
+            <option value="blue1">Blue One</option>
+            <option value="blue2" selected>Blue Two</option>
+            <option value="blue3">Blue Three</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Color - Green (#10B981)</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#10B981">
+            <option value="green1">Green One</option>
+            <option value="green2" selected>Green Two</option>
+            <option value="green3">Green Three</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Color - Purple (#8B5CF6)</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#8B5CF6">
+            <option value="purple1" selected>Purple One</option>
+            <option value="purple2">Purple Two</option>
+            <option value="purple3" selected>Purple Three</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Color - Red (#EF4444)</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#EF4444">
+            <option value="red1">Red One</option>
+            <option value="red2" selected>Red Two</option>
+            <option value="red3">Red Three</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 9: Chip Text Color -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">9. Chip Text Color</h2>
+      <p class="text-sm mb-4 opacity-80">Customize the text color of chips using the <code>chip-text-color</code> attribute with hex colors.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Background with Yellow Text</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#3B82F6" chip-text-color="#FFFF00">
+            <option value="1" selected>Item 1</option>
+            <option value="2" selected>Item 2</option>
+            <option value="3">Item 3</option>
+            <option value="4">Item 4</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">Hex Background with Black Text</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="#10B981" chip-text-color="#000000">
+            <option value="a" selected>Option A</option>
+            <option value="b" selected>Option B</option>
+            <option value="c">Option C</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">DaisyUI Primary with Red Text</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="primary" chip-text-color="#FF0000">
+            <option value="x" selected>Option X</option>
+            <option value="y" selected>Option Y</option>
+            <option value="z">Option Z</option>
+          </daisy-multiselect>
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-semibold">DaisyUI Success with Navy Text</span>
+          </label>
+          <daisy-multiselect placeholder="Select items" checked-color="success" chip-text-color="#001f3f">
+            <option value="alpha" selected>Alpha</option>
+            <option value="beta" selected>Beta</option>
+            <option value="gamma">Gamma</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display Selected Values -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">Get Selected Values</h2>
+      <button class="btn btn-primary" onclick="showSelectedValues()">Show Selected Values</button>
+      <div id="output" class="mt-4 p-4 bg-base-100 rounded-lg hidden"></div>
+    </div>
+
+    <!-- Example 7: Combined - Size, Input Color, and Checkbox Color -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">10. Combined Styles</h2>
+      <p class="text-sm mb-4 opacity-80">Combine size, input color, and checkbox color attributes.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="label"><span class="label-text">Large + Primary Input + Accent Checkboxes</span></label>
+          <daisy-multiselect placeholder="Combined styles" size="lg" input-color="primary" checked-color="accent">
+            <option value="1">Option 1</option>
+            <option value="2" selected>Option 2</option>
+            <option value="3">Option 3</option>
+          </daisy-multiselect>
+        </div>
+        
+        <div>
+          <label class="label"><span class="label-text">Small + Success Input + Success Checkboxes</span></label>
+          <daisy-multiselect placeholder="Success theme" size="sm" input-color="success" checked-color="success">
+            <option value="a">Alpha</option>
+            <option value="b" selected>Beta</option>
+            <option value="c">Gamma</option>
+          </daisy-multiselect>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 8: Runtime Option Management -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">11. Runtime Option Management</h2>
+      <p class="text-sm mb-4 opacity-80">Add, remove, and manage options dynamically at runtime.</p>
+      
+      <daisy-multiselect id="runtime-select" placeholder="Manage options dynamically" checked-color="success">
+        <option value="initial1">Initial Option 1</option>
+        <option value="initial2" selected>Initial Option 2</option>
+        <option value="initial3">Initial Option 3</option>
+      </daisy-multiselect>
+
+      <div class="mt-4 space-y-2">
+        <div class="flex gap-2 flex-wrap">
+          <button class="btn btn-sm btn-success" onclick="addNewOption()">Add New Option</button>
+          <button class="btn btn-sm btn-error" onclick="removeFirstOption()">Remove First Option</button>
+          <button class="btn btn-sm btn-info" onclick="selectByValue()">Select "initial3"</button>
+          <button class="btn btn-sm btn-warning" onclick="deselectByValue()">Deselect "initial2"</button>
+          <button class="btn btn-sm btn-neutral" onclick="showAllOptions()">Show All Options</button>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-2">
+          <button class="btn btn-sm btn-primary" onclick="openDropdown()">Open Dropdown</button>
+          <button class="btn btn-sm btn-secondary" onclick="closeDropdown()">Close Dropdown</button>
+          <button class="btn btn-sm btn-accent" onclick="toggleDropdown()">Toggle Dropdown</button>
+          <button class="btn btn-sm btn-ghost" onclick="checkDropdownState()">Check State</button>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-2">
+          <button class="btn btn-sm btn-success" onclick="enableSelect()">Enable</button>
+          <button class="btn btn-sm btn-error" onclick="disableSelect()">Disable</button>
+          <button class="btn btn-sm btn-info" onclick="showSelect()">Show</button>
+          <button class="btn btn-sm btn-warning" onclick="hideSelect()">Hide</button>
+          <button class="btn btn-sm btn-neutral" onclick="checkSelectState()">Check Enable/Visible State</button>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-2">
+          <button class="btn btn-sm btn-primary" onclick="clearAllOptions()">Clear All Options</button>
+          <button class="btn btn-sm btn-secondary" onclick="clearSelectedItems()">Clear Selected Items</button>
+        </div>
+        <div id="runtime-output" class="p-4 bg-base-100 rounded-lg hidden mt-2"></div>
+      </div>
+    </div>
+
+    <!-- Example 9: Auto-placement Test -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">12. Auto-placement Test</h2>
+      <p class="text-sm mb-4 opacity-80">This select is near the bottom of the page. When opened, it should automatically position above if there's not enough space below.</p>
+      <daisy-multiselect placeholder="Select items" checked-color="accent" size="lg">
+        <option value="auto1">Auto Option 1</option>
+        <option value="auto2">Auto Option 2</option>
+        <option value="auto3">Auto Option 3</option>
+        <option value="auto4">Auto Option 4</option>
+        <option value="auto5">Auto Option 5</option>
+        <option value="auto6">Auto Option 6</option>
+        <option value="auto7">Auto Option 7</option>
+        <option value="auto8">Auto Option 8</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 10: Search/Filter Functionality -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">13. Search/Filter Functionality</h2>
+      <p class="text-sm mb-4 opacity-80">Type to search and filter options in the dropdown.</p>
+      <daisy-multiselect placeholder="Search for countries" searchable checked-color="info" size="md">
+        <option value="usa">United States</option>
+        <option value="uk">United Kingdom</option>
+        <option value="canada">Canada</option>
+        <option value="australia">Australia</option>
+        <option value="germany">Germany</option>
+        <option value="france">France</option>
+        <option value="japan">Japan</option>
+        <option value="china">China</option>
+        <option value="india">India</option>
+        <option value="brazil">Brazil</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 11: Select All / Clear Buttons -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">14. Select All / Clear Buttons</h2>
+      <p class="text-sm mb-4 opacity-80">Use the built-in select all and deselect all buttons in the dropdown header.</p>
+      <daisy-multiselect placeholder="Select programming languages" show-select-all checked-color="secondary">
+        <option value="js">JavaScript</option>
+        <option value="py">Python</option>
+        <option value="java">Java</option>
+        <option value="cpp">C++</option>
+        <option value="csharp">C#</option>
+        <option value="go">Go</option>
+        <option value="rust">Rust</option>
+        <option value="swift">Swift</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 12: Max Selections Limit -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">15. Max Selections Limit</h2>
+      <p class="text-sm mb-4 opacity-80">Limited to selecting only 3 options. Counter shows progress.</p>
+      <daisy-multiselect placeholder="Select up to 3 favorites" max-selections="3" checked-color="warning">
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="sushi">Sushi</option>
+        <option value="pasta">Pasta</option>
+        <option value="tacos">Tacos</option>
+        <option value="ramen">Ramen</option>
+        <option value="steak">Steak</option>
+        <option value="salad">Salad</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 13: Disabled State with Clear Button -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">16. Disabled State with Clear Button</h2>
+      <p class="text-sm mb-4 opacity-80">Component is disabled but shows pre-selected values. Clear button included.</p>
+      <daisy-multiselect placeholder="Select technologies" show-clear disabled checked-color="neutral">
+        <option value="react" selected>React</option>
+        <option value="vue" selected>Vue</option>
+        <option value="angular">Angular</option>
+        <option value="svelte">Svelte</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 14: All Features Combined -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">17. All Features Combined</h2>
+      <p class="text-sm mb-4 opacity-80">Search, select all, clear button, max selections (5), and keyboard navigation all enabled.</p>
+      <daisy-multiselect 
+        placeholder="Select up to 5 skills" 
+        searchable 
+        show-select-all 
+        show-clear 
+        max-selections="5" 
+        checked-color="success" 
+        size="lg">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js" selected>JavaScript</option>
+        <option value="ts">TypeScript</option>
+        <option value="react">React</option>
+        <option value="vue">Vue</option>
+        <option value="node">Node.js</option>
+        <option value="python">Python</option>
+        <option value="sql">SQL</option>
+        <option value="git">Git</option>
+        <option value="docker">Docker</option>
+        <option value="aws">AWS</option>
+      </daisy-multiselect>
+    </div>
+
+    <!-- Example 15: Change Event Listener -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">18. Change Event Listener</h2>
+      <p class="text-sm mb-4 opacity-80">The 'change' event fires whenever selections are modified. Event detail contains semicolon-delimited values.</p>
+      <daisy-multiselect 
+        id="change-event-select"
+        placeholder="Select fruits" 
+        checked-color="info">
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="orange">Orange</option>
+        <option value="grape">Grape</option>
+        <option value="mango">Mango</option>
+        <option value="strawberry">Strawberry</option>
+      </daisy-multiselect>
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <h3 class="font-semibold mb-2">Event Data:</h3>
+        <p class="text-sm"><strong>Semicolon String:</strong> <code id="event-value-string" class="text-info">-</code></p>
+        <p class="text-sm mt-2"><strong>Values Array:</strong> <code id="event-values-array" class="text-info">-</code></p>
+        <p class="text-sm mt-2 opacity-60">Try selecting or deselecting items to see the event data update.</p>
+      </div>
+    </div>
+
+    <!-- Example 16: isBlank() with Border Color Validation -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">19. Required Field Validation</h2>
+      <p class="text-sm mb-4 opacity-80">When <code>required</code> is set, border is <span class="text-error font-semibold">red (error)</span> when blank, <span class="text-success font-semibold">green (success)</span> when selections are made.</p>
+      <daisy-multiselect 
+        id="blank-check-select"
+        placeholder="Select items (required)" 
+        checked-color="primary"
+        required>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+        <option value="option5">Option 5</option>
+      </daisy-multiselect>
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <h3 class="font-semibold mb-2">Validation Status:</h3>
+        <p class="text-sm"><strong>Is Blank:</strong> <code id="blank-status" class="text-warning">true</code></p>
+        <p class="text-sm mt-1"><strong>Required:</strong> <code id="required-status" class="text-info">true</code></p>
+        <p class="text-sm mt-2 opacity-60">Select or deselect items to see the border color and validation status change.</p>
+        <div class="flex gap-2 mt-3">
+          <button onclick="checkBlankStatus()" class="btn btn-sm btn-primary">Check isBlank()</button>
+          <button onclick="toggleRequired()" class="btn btn-sm btn-secondary">Toggle Required</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 17: Border Color Control -->
+    <div class="card bg-base-200 p-6 mb-20">
+      <h2 class="text-2xl font-semibold mb-4">20. Border Color Control</h2>
+      <p class="text-sm mb-4 opacity-80">Use the <code>borderColor</code> getter/setter to dynamically control the border color.</p>
+      <daisy-multiselect 
+        id="border-color-select"
+        placeholder="Select options" 
+        checked-color="primary">
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+        <option value="item4">Item 4</option>
+      </daisy-multiselect>
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <h3 class="font-semibold mb-2">Current Border Color:</h3>
+        <p class="text-sm mb-3"><code id="current-border-color" class="text-info">null</code></p>
+        
+        <h3 class="font-semibold mb-2">Named Colors:</h3>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button onclick="setBorderColor('error')" class="btn btn-sm btn-error">Error</button>
+          <button onclick="setBorderColor('success')" class="btn btn-sm btn-success">Success</button>
+          <button onclick="setBorderColor('warning')" class="btn btn-sm btn-warning">Warning</button>
+          <button onclick="setBorderColor('info')" class="btn btn-sm btn-info">Info</button>
+          <button onclick="setBorderColor('primary')" class="btn btn-sm btn-primary">Primary</button>
+          <button onclick="setBorderColor('secondary')" class="btn btn-sm btn-secondary">Secondary</button>
+          <button onclick="setBorderColor('accent')" class="btn btn-sm btn-accent">Accent</button>
+          <button onclick="setBorderColor(null)" class="btn btn-sm btn-neutral">Clear</button>
+        </div>
+
+        <h3 class="font-semibold mb-2">Hex Colors:</h3>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button onclick="setBorderColor('#ff0000')" class="btn btn-sm" style="background-color: #ff0000; color: white;">#ff0000</button>
+          <button onclick="setBorderColor('#00ff00')" class="btn btn-sm" style="background-color: #00ff00; color: black;">#00ff00</button>
+          <button onclick="setBorderColor('#0000ff')" class="btn btn-sm" style="background-color: #0000ff; color: white;">#0000ff</button>
+          <button onclick="setBorderColor('#ff00ff')" class="btn btn-sm" style="background-color: #ff00ff; color: white;">#ff00ff</button>
+          <button onclick="setBorderColor('#ffa500')" class="btn btn-sm" style="background-color: #ffa500; color: black;">#ffa500</button>
+        </div>
+
+        <h3 class="font-semibold mb-2">Custom Hex:</h3>
+        <div class="flex gap-2">
+          <input type="text" id="custom-hex-input" placeholder="#000000" class="input input-bordered input-sm w-32" />
+          <button onclick="setCustomHexColor()" class="btn btn-sm btn-primary">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 18: Value Getter/Setter and Events -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">21. Value Property & Events</h2>
+      <p class="text-sm mb-4 opacity-80">Use <code>value</code> getter/setter to get/set selections. Listen to <code>open</code>, <code>close</code>, and <code>change</code> events.</p>
+      <daisy-multiselect 
+        id="value-events-select"
+        placeholder="Select items" 
+        checked-color="info">
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+        <option value="item4">Item 4</option>
+        <option value="item5">Item 5</option>
+      </daisy-multiselect>
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <h3 class="font-semibold mb-2">Current Value:</h3>
+        <p class="text-sm mb-3"><code id="current-value" class="text-info">[]</code></p>
+        
+        <h3 class="font-semibold mb-2">Set Value:</h3>
+        <div class="flex gap-2 mb-4">
+          <button onclick="setValueArray(['item1', 'item3'])" class="btn btn-sm btn-primary">Set ["item1", "item3"]</button>
+          <button onclick="setValueString('item2,item4,item5')" class="btn btn-sm btn-secondary">Set "item2,item4,item5"</button>
+        </div>
+
+        <h3 class="font-semibold mb-2">Event Log:</h3>
+        <div id="event-log" class="text-xs bg-base-100 p-2 rounded h-32 overflow-y-auto font-mono"></div>
+      </div>
+    </div>
+
+    <!-- Example 19: Virtual Scrolling (Large Dataset) -->
+    <div class="card bg-base-200 p-6 mb-20">
+      <h2 class="text-2xl font-semibold mb-4">22. Virtual Scrolling with Search</h2>
+      <p class="text-sm mb-4 opacity-80">With <code>virtual-scroll</code> attribute, only visible items are rendered for better performance with large datasets (100 items). When searching, virtual scrolling is temporarily disabled to show all matching results.</p>
+      <daisy-multiselect 
+        id="virtual-scroll-select"
+        placeholder="Select from 100 items" 
+        checked-color="success"
+        virtual-scroll
+        searchable>
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+        <option value="item4">Item 4</option>
+        <option value="item5">Item 5</option>
+        <option value="item6">Item 6</option>
+        <option value="item7">Item 7</option>
+        <option value="item8">Item 8</option>
+        <option value="item9">Item 9</option>
+        <option value="item10">Item 10</option>
+        <option value="item11">Item 11</option>
+        <option value="item12">Item 12</option>
+        <option value="item13">Item 13</option>
+        <option value="item14">Item 14</option>
+        <option value="item15">Item 15</option>
+        <option value="item16">Item 16</option>
+        <option value="item17">Item 17</option>
+        <option value="item18">Item 18</option>
+        <option value="item19">Item 19</option>
+        <option value="item20">Item 20</option>
+        <option value="item21">Item 21</option>
+        <option value="item22">Item 22</option>
+        <option value="item23">Item 23</option>
+        <option value="item24">Item 24</option>
+        <option value="item25">Item 25</option>
+        <option value="item26">Item 26</option>
+        <option value="item27">Item 27</option>
+        <option value="item28">Item 28</option>
+        <option value="item29">Item 29</option>
+        <option value="item30">Item 30</option>
+        <option value="item31">Item 31</option>
+        <option value="item32">Item 32</option>
+        <option value="item33">Item 33</option>
+        <option value="item34">Item 34</option>
+        <option value="item35">Item 35</option>
+        <option value="item36">Item 36</option>
+        <option value="item37">Item 37</option>
+        <option value="item38">Item 38</option>
+        <option value="item39">Item 39</option>
+        <option value="item40">Item 40</option>
+        <option value="item41">Item 41</option>
+        <option value="item42">Item 42</option>
+        <option value="item43">Item 43</option>
+        <option value="item44">Item 44</option>
+        <option value="item45">Item 45</option>
+        <option value="item46">Item 46</option>
+        <option value="item47">Item 47</option>
+        <option value="item48">Item 48</option>
+        <option value="item49">Item 49</option>
+        <option value="item50">Item 50</option>
+        <option value="item51">Item 51</option>
+        <option value="item52">Item 52</option>
+        <option value="item53">Item 53</option>
+        <option value="item54">Item 54</option>
+        <option value="item55">Item 55</option>
+        <option value="item56">Item 56</option>
+        <option value="item57">Item 57</option>
+        <option value="item58">Item 58</option>
+        <option value="item59">Item 59</option>
+        <option value="item60">Item 60</option>
+        <option value="item61">Item 61</option>
+        <option value="item62">Item 62</option>
+        <option value="item63">Item 63</option>
+        <option value="item64">Item 64</option>
+        <option value="item65">Item 65</option>
+        <option value="item66">Item 66</option>
+        <option value="item67">Item 67</option>
+        <option value="item68">Item 68</option>
+        <option value="item69">Item 69</option>
+        <option value="item70">Item 70</option>
+        <option value="item71">Item 71</option>
+        <option value="item72">Item 72</option>
+        <option value="item73">Item 73</option>
+        <option value="item74">Item 74</option>
+        <option value="item75">Item 75</option>
+        <option value="item76">Item 76</option>
+        <option value="item77">Item 77</option>
+        <option value="item78">Item 78</option>
+        <option value="item79">Item 79</option>
+        <option value="item80">Item 80</option>
+        <option value="item81">Item 81</option>
+        <option value="item82">Item 82</option>
+        <option value="item83">Item 83</option>
+        <option value="item84">Item 84</option>
+        <option value="item85">Item 85</option>
+        <option value="item86">Item 86</option>
+        <option value="item87">Item 87</option>
+        <option value="item88">Item 88</option>
+        <option value="item89">Item 89</option>
+        <option value="item90">Item 90</option>
+        <option value="item91">Item 91</option>
+        <option value="item92">Item 92</option>
+        <option value="item93">Item 93</option>
+        <option value="item94">Item 94</option>
+        <option value="item95">Item 95</option>
+        <option value="item96">Item 96</option>
+        <option value="item97">Item 97</option>
+        <option value="item98">Item 98</option>
+        <option value="item99">Item 99</option>
+        <option value="item100">Item 100</option>
+      </daisy-multiselect>
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <p class="text-sm"><strong>Total Items:</strong> 100</p>
+        <p class="text-sm mt-1"><strong>Virtual Scroll:</strong> Enabled</p>
+        <p class="text-sm mt-1 opacity-60">Only ~10-15 items are rendered at a time as you scroll.</p>
+      </div>
+    </div>
+
+    <!-- Example 20: User Classes and Styles -->
+    <div class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">User Classes and Styles</h2>
+      <p class="text-sm mb-4 opacity-80">Add custom classes and inline styles to the component. These are automatically applied to the internal trigger button and preserved when attributes change.</p>
+      
+      <daisy-multiselect 
+        id="user-attributes-select"
+        placeholder="Select options" 
+        checked-color="info"
+        data-testid="my-select"
+        data-custom="value123">
+        <option value="opt1">Option 1</option>
+        <option value="opt2">Option 2</option>
+        <option value="opt3">Option 3</option>
+        <option value="opt4">Option 4</option>
+      </daisy-multiselect>
+
+      <div class="mt-4 space-y-2">
+        <button type="button" onclick="addShadowClass()" class="btn btn-sm btn-primary">Add Shadow Class</button>
+        <button type="button" onclick="addMultipleClasses()" class="btn btn-sm btn-secondary">Add Multiple Classes</button>
+        <button type="button" onclick="addCustomStyle()" class="btn btn-sm btn-accent">Add Custom Style</button>
+        <button type="button" onclick="resetAttributes()" class="btn btn-sm btn-ghost">Reset</button>
+      </div>
+      
+      <div class="mt-4 p-4 bg-base-300 rounded-lg">
+        <p class="text-sm"><strong>Try it:</strong> Click the buttons to dynamically add classes and styles</p>
+        <p class="text-sm mt-1 opacity-60">User classes/styles are preserved when the component updates (e.g., when disabled/enabled)</p>
+        <p class="text-sm mt-1 opacity-60">Data attributes (data-testid, data-custom) are also copied to the internal trigger button</p>
+      </div>
+    </div>
+
+    <!-- Example 23: Join Component -->
+    <div id="example-23" class="card bg-base-200 p-6 mb-20">
+      <h2 class="text-2xl font-semibold mb-4">23. Using with DaisyUI Join</h2>
+      <p class="text-sm mb-4 opacity-80">Multi-select can be used with DaisyUI's <code>join</code> component to create combined input groups.</p>
+      
+      <div class="space-y-6">
+        <div>
+          <label class="label"><span class="label-text font-semibold">Multi-select with Button</span></label>
+          <div class="join w-full">
+            <daisy-multiselect class="join-item flex-1" placeholder="Select skills" checked-color="primary" size="md">
+              <option value="html">HTML</option>
+              <option value="css">CSS</option>
+              <option value="js">JavaScript</option>
+              <option value="react">React</option>
+              <option value="vue">Vue</option>
+              <option value="angular">Angular</option>
+            </daisy-multiselect>
+            <button class="btn btn-md btn-primary join-item">Apply Filter</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Multi-select with Rounded Button</span></label>
+          <div class="join w-full">
+            <daisy-multiselect class="join-item flex-1" placeholder="Select categories" checked-color="secondary" size="md">
+              <option value="tech">Technology</option>
+              <option value="design">Design</option>
+              <option value="business">Business</option>
+              <option value="health">Health</option>
+              <option value="education">Education</option>
+            </daisy-multiselect>
+            <button class="btn btn-md btn-secondary join-item rounded-r-full">Subscribe</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Multiple Inputs in Join</span></label>
+          <div class="join w-full">
+            <input class="input input-md input-bordered join-item w-1/3" placeholder="Name" />
+            <daisy-multiselect class="join-item flex-1" placeholder="Select roles" checked-color="accent" size="md">
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+              <option value="moderator">Moderator</option>
+              <option value="guest">Guest</option>
+            </daisy-multiselect>
+            <button class="btn btn-md btn-accent join-item">Add User</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">Vertical Join with Small Size</span></label>
+          <div class="join join-vertical w-full">
+            <daisy-multiselect class="join-item" placeholder="Select tags" size="sm" checked-color="info">
+              <option value="featured">Featured</option>
+              <option value="trending">Trending</option>
+              <option value="new">New</option>
+              <option value="popular">Popular</option>
+            </daisy-multiselect>
+            <button class="btn btn-info btn-sm join-item">Search</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text font-semibold">With Dropdown and Button</span></label>
+          <div class="join w-full">
+            <select class="select select-md select-bordered join-item">
+              <option>All</option>
+              <option>Active</option>
+              <option>Inactive</option>
+            </select>
+            <daisy-multiselect class="join-item flex-1" placeholder="Select status" checked-color="success" size="md">
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+              <option value="review">Under Review</option>
+            </daisy-multiselect>
+            <button class="btn btn-md btn-success join-item">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 24: Custom Renderer - SVG Icons -->
+    <div id="example-24" class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">24. Custom Renderer with SVG Icons</h2>
+      <p class="text-sm mb-4 opacity-80">Use the <code>configure()</code> method with a <code>customRenderer</code> function to display rich content. Each option includes an SVG icon, description, and badge.</p>
+      
+      <label class="label"><span class="label-text">Select Features</span></label>
+      <daisy-multiselect id="features-select" placeholder="Choose features..." search-enabled checked-color="primary"></daisy-multiselect>
+      
+      <div class="mt-4">
+        <button class="btn btn-sm" onclick="console.log(document.getElementById('features-select').getSelectedValues())">
+          Log Selected Values
+        </button>
+      </div>
+    </div>
+
+    <!-- Example 25: Custom Renderer - User Avatars -->
+    <div id="example-25" class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">25. Custom Renderer with User Avatars</h2>
+      <p class="text-sm mb-4 opacity-80">Display user avatars with online status indicators and role badges. Avatars are generated using the DiceBear API.</p>
+      
+      <label class="label"><span class="label-text">Assign Team Members</span></label>
+      <daisy-multiselect id="users-select" placeholder="Select team members..." search-enabled checked-color="secondary"></daisy-multiselect>
+      
+      <div class="mt-4">
+        <button class="btn btn-sm" onclick="console.log(document.getElementById('users-select').getSelectedValues())">
+          Log Selected Users
+        </button>
+      </div>
+    </div>
+
+    <!-- Example 26: Custom Renderer - Product Images -->
+    <div id="example-26" class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">26. Custom Renderer with Product Images</h2>
+      <p class="text-sm mb-4 opacity-80">Show product images with pricing, star ratings, and stock status using Unsplash placeholder images.</p>
+      
+      <label class="label"><span class="label-text">Select Products</span></label>
+      <daisy-multiselect id="products-select" placeholder="Choose products..." search-enabled checked-color="accent"></daisy-multiselect>
+      
+      <div class="mt-4">
+        <button class="btn btn-sm" onclick="console.log(document.getElementById('products-select').getSelectedValues())">
+          Log Selected Products
+        </button>
+      </div>
+    </div>
+
+    <!-- Example 27: Custom Renderer - Country Flags -->
+    <div id="example-27" class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">27. Custom Renderer with Country Flags</h2>
+      <p class="text-sm mb-4 opacity-80">Display country emoji flags with capital cities, population, and continent badges.</p>
+      
+      <label class="label"><span class="label-text">Select Countries</span></label>
+      <daisy-multiselect id="countries-select" placeholder="Choose countries..." search-enabled checked-color="info"></daisy-multiselect>
+      
+      <div class="mt-4">
+        <button class="btn btn-sm" onclick="console.log(document.getElementById('countries-select').getSelectedValues())">
+          Log Selected Countries
+        </button>
+      </div>
+    </div>
+
+    <!-- Example 28: Bulk addOptions with Field Mappings -->
+    <div id="example-28" class="card bg-base-200 p-6">
+      <h2 class="text-2xl font-semibold mb-4">28. Bulk addOptions with Custom Field Mappings</h2>
+      <p class="text-sm mb-4 opacity-80">
+        Demonstrate <code>addOptions()</code> method for bulk-adding options with custom field mappings. 
+        This is optimized for performance - all items are built in memory and DOM is updated only once.
+      </p>
+      
+      <div class="space-y-6">
+        <!-- Example 28a: Default field names -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Default Field Names (value, text, selected, disabled)</span></label>
+          <daisy-multiselect id="bulk-default-select" placeholder="Select items..." search-enabled checked-color="primary"></daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-primary" onclick="loadDefaultFieldData()">Load 100 Items</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('bulk-default-select').clear()">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Example 28b: Custom field names -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Custom Field Names (id, name, isActive, role, email)</span></label>
+          <daisy-multiselect id="bulk-custom-select" placeholder="Select employees..." search-enabled checked-color="secondary"></daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-secondary" onclick="loadCustomFieldData()">Load Employee Data</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('bulk-custom-select').clear()">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Example 28c: With custom renderer -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Custom Renderer with Bulk Data</span></label>
+          <daisy-multiselect id="bulk-products-select" placeholder="Select products..." search-enabled checked-color="accent"></daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-accent" onclick="loadProductsData()">Load 50 Products</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('bulk-products-select').clear()">Clear All</button>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span><strong>Performance:</strong> All items are built in memory first, then added to DOM in a single operation. Open browser DevTools Console to see timing logs.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 29: Data Attributes -->
+    <div id="example-29" class="card bg-base-200 p-6">
+    <h2 class="text-2xl font-semibold mb-4">29. Data Attributes with Custom Renderers</h2>
+    <p class="text-sm mb-4 opacity-80">Use data-* attributes on &lt;option&gt; elements to pass metadata to custom renderers. Supports data-selected, data-disabled, data-icon, data-image, data-rating, etc. All data attributes are automatically extracted and available in custom renderers.</p>
+    
+    <div class="space-y-6">
+        <!-- Example 29a: Product ratings with data attributes -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Product Ratings (using data attributes)</span></label>
+          <p class="text-sm opacity-70 mb-2">Uses data-rating, data-icon, data-price, data-selected, data-disabled</p>
+          <daisy-multiselect id="data-attr-products" placeholder="Select products..." checked-color="warning">
+            <option value="laptop" data-rating="5" data-icon="💻" data-price="$999" data-selected="true">Laptop</option>
+            <option value="phone" data-rating="4" data-icon="📱" data-price="$699">Smartphone</option>
+            <option value="tablet" data-rating="4" data-icon="📱" data-price="$499">Tablet</option>
+            <option value="watch" data-rating="3" data-icon="⌚" data-price="$299">Smartwatch</option>
+            <option value="headphones" data-rating="5" data-icon="🎧" data-price="$199">Headphones</option>
+            <option value="keyboard" data-rating="4" data-icon="⌨️" data-price="$129" data-disabled="true">Keyboard (Out of Stock)</option>
+            <option value="mouse" data-rating="3" data-icon="🖱️" data-price="$49">Mouse</option>
+          </daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-primary" onclick="showDataAttributes('data-attr-products', 'products-output')">Show Data Attributes</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('data-attr-products').clearSelected()">Clear Selection</button>
+          </div>
+          <div id="products-output" class="mt-4 p-4 bg-base-200 rounded-lg hidden">
+            <h3 class="font-semibold mb-2">Extracted Data:</h3>
+            <pre class="text-xs overflow-x-auto"></pre>
+          </div>
+        </div>
+
+        <!-- Example 29b: Team members with avatars -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Team Members (with avatar URLs)</span></label>
+          <p class="text-sm opacity-70 mb-2">Uses data-role, data-image, data-email, data-selected, data-disabled</p>
+          <daisy-multiselect id="data-attr-team" placeholder="Select team members..." checked-color="info">
+            <option value="alice" data-role="Developer" data-image="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice" data-email="alice@example.com" data-selected="true">Alice Johnson</option>
+            <option value="bob" data-role="Designer" data-image="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob" data-email="bob@example.com">Bob Smith</option>
+            <option value="carol" data-role="Manager" data-image="https://api.dicebear.com/7.x/avataaars/svg?seed=Carol" data-email="carol@example.com">Carol Williams</option>
+            <option value="david" data-role="Developer" data-image="https://api.dicebear.com/7.x/avataaars/svg?seed=David" data-email="david@example.com" data-disabled="true">David Brown (On Leave)</option>
+            <option value="emma" data-role="QA" data-image="https://api.dicebear.com/7.x/avataaars/svg?seed=Emma" data-email="emma@example.com">Emma Davis</option>
+          </daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-info" onclick="showDataAttributes('data-attr-team', 'team-output')">Show Data Attributes</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('data-attr-team').selectAll()">Select All</button>
+          </div>
+          <div id="team-output" class="mt-4 p-4 bg-base-200 rounded-lg hidden">
+            <h3 class="font-semibold mb-2">Extracted Data:</h3>
+            <pre class="text-xs overflow-x-auto"></pre>
+          </div>
+        </div>
+
+        <!-- Example 29c: Countries with flags -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">Countries (with flag emojis)</span></label>
+          <p class="text-sm opacity-70 mb-2">Uses data-flag, data-capital, data-population</p>
+          <daisy-multiselect id="data-attr-countries" placeholder="Select countries..." checked-color="success">
+            <option value="us" data-flag="🇺🇸" data-capital="Washington D.C." data-population="331M">United States</option>
+            <option value="uk" data-flag="🇬🇧" data-capital="London" data-population="67M" data-selected="true">United Kingdom</option>
+            <option value="canada" data-flag="🇨🇦" data-capital="Ottawa" data-population="38M">Canada</option>
+            <option value="australia" data-flag="🇦🇺" data-capital="Canberra" data-population="26M">Australia</option>
+            <option value="japan" data-flag="🇯🇵" data-capital="Tokyo" data-population="125M">Japan</option>
+            <option value="germany" data-flag="🇩🇪" data-capital="Berlin" data-population="83M">Germany</option>
+          </daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-success" onclick="showDataAttributes('data-attr-countries', 'countries-output')">Show Data Attributes</button>
+            <button class="btn btn-sm btn-ghost" onclick="document.getElementById('data-attr-countries').clear()">Clear All</button>
+          </div>
+          <div id="countries-output" class="mt-4 p-4 bg-base-200 rounded-lg hidden">
+            <h3 class="font-semibold mb-2">Extracted Data:</h3>
+            <pre class="text-xs overflow-x-auto"></pre>
+          </div>
+        </div>
+
+        <!-- Example 29d: camelCase conversion test -->
+        <div>
+          <label class="label"><span class="label-text font-semibold">camelCase Conversion Test</span></label>
+          <p class="text-sm opacity-70 mb-2">Tests that data-my-custom-attr becomes myCustomAttr</p>
+          <daisy-multiselect id="data-attr-camelcase" placeholder="Select items..." checked-color="accent">
+            <option value="item1" data-my-custom-attr="value1" data-another-test="test" data-long-attribute-name="works">Item 1</option>
+            <option value="item2" data-my-custom-attr="value2" data-another-test="test2" data-long-attribute-name="great" data-selected="true">Item 2</option>
+            <option value="item3" data-my-custom-attr="value3" data-another-test="test3" data-long-attribute-name="perfect">Item 3</option>
+          </daisy-multiselect>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-accent" onclick="showDataAttributes('data-attr-camelcase', 'camelcase-output')">Show camelCase Keys</button>
+          </div>
+          <div id="camelcase-output" class="mt-4 p-4 bg-base-200 rounded-lg hidden">
+            <h3 class="font-semibold mb-2">Extracted Data (check camelCase keys):</h3>
+            <pre class="text-xs overflow-x-auto"></pre>
+          </div>
+        </div>
+
+      <div class="alert alert-info mt-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div>
+          <strong>How It Works:</strong> Any data-* attribute on &lt;option&gt; is automatically extracted and passed to custom renderers.
+          <ul class="list-disc ml-6 mt-2 text-sm">
+            <li><code>data-selected="true"</code> - Override selected state</li>
+            <li><code>data-disabled="true"</code> - Override disabled state</li>
+            <li><code>data-icon</code>, <code>data-image</code>, <code>data-rating</code> - Custom metadata</li>
+            <li>Attribute names are converted to camelCase (data-my-attr → myAttr)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Close max-w-2xl mx-auto container -->
+  
+  <script src="daisy-multiselect.js"></script>
+  <script>
+    // Log computed heights for Example 23
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const example23 = document.querySelector('#example-23');
+        if (example23) {
+          const firstJoin = example23.querySelector('.join');
+          const multiselect = firstJoin.querySelector('daisy-multiselect');
+          const button = firstJoin.querySelector('button');
+          
+          if (multiselect && button) {
+            const multiselectHeight = window.getComputedStyle(multiselect).height;
+            const buttonHeight = window.getComputedStyle(button).height;
+            const multiselectBox = multiselect.getBoundingClientRect();
+            const buttonBox = button.getBoundingClientRect();
+            
+            console.log('=== Example 23 First Example Heights ===');
+            console.log('Multi-select computed height:', multiselectHeight);
+            console.log('Multi-select bounding height:', multiselectBox.height + 'px');
+            console.log('Button computed height:', buttonHeight);
+            console.log('Button bounding height:', buttonBox.height + 'px');
+            console.log('Height difference:', Math.abs(multiselectBox.height - buttonBox.height) + 'px');
+          }
+        }
+      }, 500);
+    });
+    
+    // Demo function to show selected values
+    function showSelectedValues() {
+      const selects = document.querySelectorAll('daisy-multiselect');
+      const output = document.getElementById('output');
+      let html = '<h3 class="font-semibold mb-2">Selected Values:</h3>';
+      
+      selects.forEach((select, index) => {
+        const selected = select.getSelectedValues();
+        
+        if (selected.length > 0) {
+          html += `<p class="text-sm mb-1">Example ${index + 1}: ${selected.join(', ')}</p>`;
+        }
+      });
+      
+      output.innerHTML = html;
+      output.classList.remove('hidden');
+    }
+
+    // Example 8: Runtime option management functions
+    let optionCounter = 1;
+    
+    function addNewOption() {
+      const select = document.getElementById('runtime-select');
+      select.addOption(`new${optionCounter}`, `New Option ${optionCounter}`, false, false);
+      showRuntimeOutput(`Added: New Option ${optionCounter}`);
+      optionCounter++;
+    }
+    
+    function removeFirstOption() {
+      const select = document.getElementById('runtime-select');
+      const allOptions = select.getAllOptions();
+      if (allOptions.length > 0) {
+        const value = allOptions[0].value;
+        select.removeOption(value);
+        showRuntimeOutput(`Removed: ${value}`);
+      } else {
+        showRuntimeOutput('No options to remove');
+      }
+    }
+    
+    function selectByValue() {
+      const select = document.getElementById('runtime-select');
+      const success = select.selectByValue('initial3');
+      if (success) {
+        showRuntimeOutput('Selected: initial3');
+      } else {
+        showRuntimeOutput('Option not found: initial3');
+      }
+    }
+    
+    function deselectByValue() {
+      const select = document.getElementById('runtime-select');
+      const success = select.deselectByValue('initial2');
+      if (success) {
+        showRuntimeOutput('Deselected: initial2');
+      } else {
+        showRuntimeOutput('Option not found: initial2');
+      }
+    }
+    
+    function showAllOptions() {
+      const select = document.getElementById('runtime-select');
+      const options = select.getAllOptions();
+      const optionList = options.map(opt => `${opt.value}: "${opt.text}" (${opt.selected ? '✓' : '✗'})`).join(', ');
+      showRuntimeOutput(`${options.length} options: ${optionList}`);
+    }
+    
+    function openDropdown() {
+      const select = document.getElementById('runtime-select');
+      select.open();
+      showRuntimeOutput('Opened dropdown');
+    }
+    
+    function closeDropdown() {
+      const select = document.getElementById('runtime-select');
+      select.close();
+      showRuntimeOutput('Closed dropdown');
+    }
+    
+    function toggleDropdown() {
+      const select = document.getElementById('runtime-select');
+      select.toggle();
+      showRuntimeOutput(`Toggled dropdown (now ${select.isOpen ? 'open' : 'closed'})`);
+    }
+    
+    function checkDropdownState() {
+      const select = document.getElementById('runtime-select');
+      alert(`Dropdown is currently: ${select.isOpen ? 'OPEN' : 'CLOSED'}`);
+    }
+    
+    function enableSelect() {
+      const select = document.getElementById('runtime-select');
+      select.enabled = true;
+      showRuntimeOutput('Select enabled');
+    }
+    
+    function disableSelect() {
+      const select = document.getElementById('runtime-select');
+      select.enabled = false;
+      showRuntimeOutput('Select disabled');
+    }
+    
+    function showSelect() {
+      const select = document.getElementById('runtime-select');
+      select.visible = true;
+      showRuntimeOutput('Select shown');
+    }
+    
+    function hideSelect() {
+      const select = document.getElementById('runtime-select');
+      select.visible = false;
+      showRuntimeOutput('Select hidden');
+    }
+    
+    function checkSelectState() {
+      const select = document.getElementById('runtime-select');
+      alert(`Enabled: ${select.enabled}\nVisible: ${select.visible}`);
+    }
+    
+    function clearAllOptions() {
+      const select = document.getElementById('runtime-select');
+      select.clear();
+      showRuntimeOutput('Cleared all options');
+    }
+    
+    function clearSelectedItems() {
+      const select = document.getElementById('runtime-select');
+      select.clearSelected();
+      showRuntimeOutput('Cleared selected items');
+    }
+    
+    function showRuntimeOutput(message) {
+      const output = document.getElementById('runtime-output');
+      output.textContent = message;
+      output.classList.remove('hidden');
+      setTimeout(() => output.classList.add('hidden'), 3000);
+    }
+
+    // Example 15: Change event listener
+    document.addEventListener('DOMContentLoaded', () => {
+      const changeEventSelect = document.getElementById('change-event-select');
+      const valueStringDisplay = document.getElementById('event-value-string');
+      const valuesArrayDisplay = document.getElementById('event-values-array');
+
+      if (changeEventSelect) {
+        changeEventSelect.addEventListener('change', (event) => {
+          const { values, valueString } = event.detail;
+          
+          // Update displays
+          valueStringDisplay.textContent = valueString || '(empty)';
+          valuesArrayDisplay.textContent = values.length > 0 ? JSON.stringify(values) : '[]';
+        });
+      }
+
+      // Example 16: isBlank() and required listener
+      const blankCheckSelect = document.getElementById('blank-check-select');
+      const blankStatusDisplay = document.getElementById('blank-status');
+      const requiredStatusDisplay = document.getElementById('required-status');
+
+      if (blankCheckSelect && blankStatusDisplay && requiredStatusDisplay) {
+        // Update on change
+        blankCheckSelect.addEventListener('change', () => {
+          updateBlankStatus();
+        });
+
+        // Initial update
+        updateBlankStatus();
+      }
+
+      function updateBlankStatus() {
+        const isBlank = blankCheckSelect.isBlank();
+        const isRequired = blankCheckSelect.required;
+        
+        blankStatusDisplay.textContent = isBlank.toString();
+        blankStatusDisplay.className = isBlank ? 'text-error' : 'text-success';
+        
+        requiredStatusDisplay.textContent = isRequired.toString();
+        requiredStatusDisplay.className = isRequired ? 'text-info' : 'text-warning';
+      }
+
+      // Make functions available globally for buttons
+      window.checkBlankStatus = function() {
+        const isBlank = blankCheckSelect.isBlank();
+        const isRequired = blankCheckSelect.required;
+        let message = `isBlank() returned: ${isBlank}\n`;
+        message += `required: ${isRequired}\n\n`;
+        
+        if (isRequired) {
+          message += isBlank ? 'Validation: FAILED - border is ERROR (red)' : 'Validation: PASSED - border is SUCCESS (green)';
+        } else {
+          message += 'No validation applied (required is false)';
+        }
+        
+        alert(message);
+      };
+
+      window.toggleRequired = function() {
+        blankCheckSelect.required = !blankCheckSelect.required;
+        updateBlankStatus();
+        alert(`Required is now: ${blankCheckSelect.required}\n\n${blankCheckSelect.required ? 'Border validation is ACTIVE' : 'Border validation is INACTIVE'}`);
+      };
+
+      // Example 17: Border color control
+      const borderColorSelect = document.getElementById('border-color-select');
+      const currentBorderColorDisplay = document.getElementById('current-border-color');
+
+      if (borderColorSelect && currentBorderColorDisplay) {
+        // Update display on change
+        borderColorSelect.addEventListener('change', () => {
+          updateBorderColorDisplay();
+        });
+
+        // Initial update
+        updateBorderColorDisplay();
+      }
+
+      function updateBorderColorDisplay() {
+        const color = borderColorSelect.borderColor;
+        currentBorderColorDisplay.textContent = color || 'null';
+        currentBorderColorDisplay.className = color ? `text-${color}` : 'text-base-content';
+      }
+
+      window.setBorderColor = function(color) {
+        borderColorSelect.borderColor = color;
+        updateBorderColorDisplay();
+      };
+
+      window.setCustomHexColor = function() {
+        const hexInput = document.getElementById('custom-hex-input');
+        const hexValue = hexInput.value.trim();
+        
+        if (!hexValue) {
+          alert('Please enter a hex color value');
+          return;
+        }
+        
+        // Add # if not present
+        const formattedHex = hexValue.startsWith('#') ? hexValue : '#' + hexValue;
+        
+        // Validate hex format
+        if (!/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(formattedHex)) {
+          alert('Invalid hex color format. Use #RGB or #RRGGBB format.');
+          return;
+        }
+        
+        borderColorSelect.borderColor = formattedHex;
+        updateBorderColorDisplay();
+        hexInput.value = '';
+      };
+
+      // Example 18: Value and Events
+      const valueEventsSelect = document.getElementById('value-events-select');
+      const currentValueDisplay = document.getElementById('current-value');
+      const eventLog = document.getElementById('event-log');
+
+      if (valueEventsSelect && currentValueDisplay && eventLog) {
+        // Update value display
+        function updateValueDisplay() {
+          const value = valueEventsSelect.value;
+          currentValueDisplay.textContent = JSON.stringify(value);
+        }
+
+        // Log events
+        function logEvent(eventName, detail = null) {
+          const timestamp = new Date().toLocaleTimeString();
+          const detailStr = detail ? ` - ${JSON.stringify(detail)}` : '';
+          const logEntry = document.createElement('div');
+          logEntry.textContent = `[${timestamp}] ${eventName}${detailStr}`;
+          logEntry.className = 'mb-1';
+          eventLog.insertBefore(logEntry, eventLog.firstChild);
+          
+          // Limit to 20 entries
+          while (eventLog.children.length > 20) {
+            eventLog.removeChild(eventLog.lastChild);
+          }
+        }
+
+        // Listen to events
+        valueEventsSelect.addEventListener('change', (e) => {
+          logEvent('change', { values: e.detail.values, valueString: e.detail.valueString });
+          updateValueDisplay();
+        });
+
+        valueEventsSelect.addEventListener('open', () => {
+          logEvent('open');
+        });
+
+        valueEventsSelect.addEventListener('close', () => {
+          logEvent('close');
+        });
+
+        // Initial update
+        updateValueDisplay();
+
+        // Global functions for buttons
+        window.setValueArray = function(arr) {
+          valueEventsSelect.value = arr;
+          updateValueDisplay();
+          logEvent('value set', { type: 'array', value: arr });
+        };
+
+        window.setValueString = function(str) {
+          valueEventsSelect.value = str;
+          updateValueDisplay();
+          logEvent('value set', { type: 'string', value: str });
+        };
+      }
+    });
+  </script>
+
+  <script>
+    // Example 20: User Classes and Styles
+    document.addEventListener('DOMContentLoaded', () => {
+      const userAttributesSelect = document.getElementById('user-attributes-select');
+      
+      // Test adding classes dynamically
+      window.addShadowClass = function() {
+        userAttributesSelect.className = 'shadow-xl rounded-lg';
+      };
+      
+      window.addMultipleClasses = function() {
+        userAttributesSelect.className = 'shadow-2xl rounded-xl border-4 border-primary';
+      };
+      
+      window.addCustomStyle = function() {
+        userAttributesSelect.setAttribute('style', 'transform: scale(1.05); transition: all 0.3s;');
+      };
+      
+      window.resetAttributes = function() {
+        userAttributesSelect.className = '';
+        userAttributesSelect.setAttribute('style', '');
+      };
+
+      // ============================================
+      // Example 24: Custom Renderer - SVG Icons
+      // External function approach
+      // ============================================
+      
+      // Define external renderer function
+      function renderFeatureOption(item) {
+        const svgIcon = item.svg || '';
+        const description = item.description || '';
+        const badge = item.badge || '';
+        // Add style to badge and description for persistent color
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${svgIcon ? `<div class="flex-shrink-0">${svgIcon}</div>` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-base">${item.text}</div>
+              ${description ? `<div class="text-xs mt-0.5" style="color:#6b7280;">${description}</div>` : ''}
+            </div>
+            ${badge ? `<span class="badge badge-sm" style="background:#22d3ee; color:#fff;">${badge}</span>` : ''}
+          </div>
+        `;
+      }
+      
+      const featuresSelect = document.getElementById('features-select');
+      
+      if (featuresSelect) {
+        // Pass external function to customRenderer
+        featuresSelect.configure({
+          customRenderer: renderFeatureOption
+        });
+
+        // Add features with SVG icons
+        featuresSelect.addOption('analytics', 'Analytics Dashboard', false, false, {
+          svg: '<svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>',
+          description: 'Real-time charts and reports',
+          badge: 'Popular'
+        });
+
+        featuresSelect.addOption('security', 'Advanced Security', true, false, {
+          svg: '<svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>',
+          description: '2FA and encryption included',
+          badge: 'Recommended',
+          badgeClass: 'badge-success'
+        });
+
+        featuresSelect.addOption('api', 'API Access', false, false, {
+          svg: '<svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>',
+          description: 'RESTful API with rate limiting',
+          badge: 'Pro'
+        });
+
+        featuresSelect.addOption('notifications', 'Push Notifications', false, false, {
+          svg: '<svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>',
+          description: 'Mobile and desktop alerts'
+        });
+
+        featuresSelect.addOption('collaboration', 'Team Collaboration', true, false, {
+          svg: '<svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>',
+          description: 'Shared workspaces and comments'
+        });
+
+        featuresSelect.addOption('backup', 'Automated Backups', false, false, {
+          svg: '<svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>',
+          description: 'Daily automatic data backups'
+        });
+      }
+
+      // ============================================
+      // Example 25: Custom Renderer - User Avatars
+      // External function approach
+      // ============================================
+      
+      // Define external renderer function
+      function renderUserOption(item) {
+        const avatar = item.avatar || '';
+        const email = item.email || '';
+        const status = item.status || '';
+        const role = item.role || '';
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${avatar ? `
+              <div class="avatar ${status === 'online' ? 'online' : status === 'offline' ? 'offline' : ''}">
+                <div class="w-10 rounded-full">
+                  <img src="${avatar}" alt="${item.text}" />
+                </div>
+              </div>
+            ` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              ${email ? `<div class="text-xs" style="color:#6b7280;">${email}</div>` : ''}
+            </div>
+            <div class="flex gap-1 flex-shrink-0">
+              ${status ? `<span class="badge badge-xs" style="background:${status === 'online' ? '#22c55e' : '#e5e7eb'};color:${status === 'online' ? '#fff' : '#111'};">${status}</span>` : ''}
+              ${role ? `<span class="badge badge-xs badge-outline" style="color:#6366f1;">${role}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }
+      
+      const usersSelect = document.getElementById('users-select');
+      
+      if (usersSelect) {
+        // Pass external function to customRenderer
+        usersSelect.configure({
+          customRenderer: renderUserOption
+        });
+
+        // Add users with avatars (using DiceBear API)
+        usersSelect.addOption('user1', 'Sarah Johnson', true, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
+          email: 'sarah.j@company.com',
+          status: 'online',
+          role: 'Admin'
+        });
+
+        usersSelect.addOption('user2', 'Mike Chen', false, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Mike',
+          email: 'mike.c@company.com',
+          status: 'online',
+          role: 'Developer'
+        });
+
+        usersSelect.addOption('user3', 'Emily Rodriguez', true, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily',
+          email: 'emily.r@company.com',
+          status: 'offline',
+          role: 'Designer'
+        });
+
+        usersSelect.addOption('user4', 'James Wilson', false, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James',
+          email: 'james.w@company.com',
+          status: 'online',
+          role: 'Manager'
+        });
+
+        usersSelect.addOption('user5', 'Lisa Anderson', false, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa',
+          email: 'lisa.a@company.com',
+          status: 'offline',
+          role: 'Developer'
+        });
+
+        usersSelect.addOption('user6', 'David Kim', false, false, {
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David',
+          email: 'david.k@company.com',
+          status: 'online',
+          role: 'QA'
+        });
+      }
+
+      // ============================================
+      // Example 26: Custom Renderer - Product Images
+      // External function approach
+      // ============================================
+      
+      // Define external renderer function
+      function renderProductOption(item) {
+        const image = item.image || '';
+        const price = item.price || '';
+        const rating = item.rating || 0;
+        const stock = item.stock || 0;
+        // Generate star rating
+        const stars = '⭐'.repeat(Math.floor(rating)) + (rating % 1 >= 0.5 ? '½' : '');
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${image ? `
+              <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded overflow-hidden">
+                <img src="${image}" alt="${item.text}" class="w-full h-full object-cover" />
+              </div>
+            ` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              <div class="flex items-center gap-2 mt-0.5">
+                ${rating ? `<span class="text-xs" style="color:#f59e42;">${stars}</span>` : ''}
+                ${price ? `<span class="text-xs font-bold" style="color:#16a34a;">$${price}</span>` : ''}
+              </div>
+            </div>
+            ${stock !== undefined ? `
+              <span class="badge badge-sm" style="background:${stock > 0 ? '#22c55e' : '#ef4444'};color:#fff;">${stock > 0 ? `${stock} in stock` : 'Out of stock'}</span>
+            ` : ''}
+          </div>
+        `;
+      }
+      
+      const productsSelect = document.getElementById('products-select');
+      
+      if (productsSelect) {
+        // Pass external function to customRenderer
+        productsSelect.configure({
+          customRenderer: renderProductOption
+        });
+
+        // Add products with images (using placeholder images)
+        productsSelect.addOption('prod1', 'Wireless Headphones', false, false, {
+          image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop',
+          price: '79.99',
+          rating: 4.5,
+          stock: 24
+        });
+
+        productsSelect.addOption('prod2', 'Smart Watch', true, false, {
+          image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&h=100&fit=crop',
+          price: '299.99',
+          rating: 5,
+          stock: 12
+        });
+
+        productsSelect.addOption('prod3', 'Laptop Stand', false, false, {
+          image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=100&h=100&fit=crop',
+          price: '45.00',
+          rating: 4,
+          stock: 0
+        });
+
+        productsSelect.addOption('prod4', 'Mechanical Keyboard', true, false, {
+          image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=100&h=100&fit=crop',
+          price: '149.99',
+          rating: 4.5,
+          stock: 8
+        });
+
+        productsSelect.addOption('prod5', 'USB-C Hub', false, false, {
+          image: 'https://images.unsplash.com/photo-1625948515291-69613efd103f?w=100&h=100&fit=crop',
+          price: '34.99',
+          rating: 4,
+          stock: 156
+        });
+
+        productsSelect.addOption('prod6', 'Webcam HD', false, false, {
+          image: 'https://images.unsplash.com/photo-1624571409108-e52cf6e9d5b7?w=100&h=100&fit=crop',
+          price: '89.99',
+          rating: 4.5,
+          stock: 43
+        });
+      }
+
+      // ============================================
+      // Example 27: Custom Renderer - Country Flags
+      // External function approach
+      // ============================================
+      
+      // Define external renderer function
+      function renderCountryOption(item) {
+        const flag = item.flag || '';
+        const capital = item.capital || '';
+        const population = item.population || '';
+        const continent = item.continent || '';
+        
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${flag ? `<span class="text-3xl flex-shrink-0">${flag}</span>` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              <div class="text-xs text-gray-500 mt-0.5">
+                ${capital ? `Capital: ${capital}` : ''}
+                ${population ? ` • Pop: ${population}` : ''}
+              </div>
+            </div>
+            ${continent ? `<span class="badge badge-sm badge-outline">${continent}</span>` : ''}
+          </div>
+        `;
+      }
+      
+      const countriesSelect = document.getElementById('countries-select');
+      
+      if (countriesSelect) {
+        // Pass external function to customRenderer
+        countriesSelect.configure({
+          customRenderer: renderCountryOption
+        });
+
+        // Add countries
+        countriesSelect.addOption('usa', 'United States', true, false, {
+          flag: '🇺🇸',
+          capital: 'Washington D.C.',
+          population: '331M',
+          continent: 'N. America'
+        });
+
+        countriesSelect.addOption('japan', 'Japan', false, false, {
+          flag: '🇯🇵',
+          capital: 'Tokyo',
+          population: '126M',
+          continent: 'Asia'
+        });
+
+        countriesSelect.addOption('germany', 'Germany', true, false, {
+          flag: '🇩🇪',
+          capital: 'Berlin',
+          population: '83M',
+          continent: 'Europe'
+        });
+
+        countriesSelect.addOption('brazil', 'Brazil', false, false, {
+          flag: '🇧🇷',
+          capital: 'Brasília',
+          population: '213M',
+          continent: 'S. America'
+        });
+
+        countriesSelect.addOption('australia', 'Australia', false, false, {
+          flag: '🇦🇺',
+          capital: 'Canberra',
+          population: '26M',
+          continent: 'Oceania'
+        });
+
+        countriesSelect.addOption('france', 'France', false, false, {
+          flag: '🇫🇷',
+          capital: 'Paris',
+          population: '67M',
+          continent: 'Europe'
+        });
+
+        countriesSelect.addOption('india', 'India', false, false, {
+          flag: '🇮🇳',
+          capital: 'New Delhi',
+          population: '1.4B',
+          continent: 'Asia'
+        });
+
+        countriesSelect.addOption('canada', 'Canada', false, false, {
+          flag: '🇨🇦',
+          capital: 'Ottawa',
+          population: '38M',
+          continent: 'N. America'
+        });
+      }
+
+      // ============================================
+      // Example 28: Bulk addOptions Functions
+      // ============================================
+
+      // 28a: Load with default field names
+      window.loadDefaultFieldData = function() {
+        const select = document.getElementById('bulk-default-select');
+        
+        // Clear existing options first
+        select.clear();
+        
+        // Generate 100 items with default field structure
+        const items = [];
+        const categories = ['Electronics', 'Clothing', 'Food', 'Books', 'Toys'];
+        
+        console.time('addOptions - Default Fields (100 items)');
+        
+        for (let i = 1; i <= 100; i++) {
+          items.push({
+            value: `item-${i}`,
+            text: `Item ${i} - ${categories[i % categories.length]}`,
+            selected: i % 10 === 0, // Every 10th item is selected
+            disabled: i % 25 === 0  // Every 25th item is disabled
+          });
+        }
+        
+        const count = select.addOptions(items);
+        
+        console.timeEnd('addOptions - Default Fields (100 items)');
+        console.log(`Successfully added ${count} items`);
+      };
+
+      // 28b: Load with custom field names
+      window.loadCustomFieldData = function() {
+        const select = document.getElementById('bulk-custom-select');
+        
+        // Clear and configure field mappings
+        select.clear();
+        select.configure({
+          valueField: 'id',
+          textField: 'name',
+          selectedField: 'isActive',
+          disabledField: null, // No disabled field in this dataset
+          extraDataFields: ['role', 'email'] // Include these for potential custom rendering
+        });
+        
+        // Sample employee data with custom field structure
+        const employees = [
+          { id: 'emp001', name: 'Alice Johnson', isActive: true, role: 'Manager', email: 'alice.j@company.com' },
+          { id: 'emp002', name: 'Bob Smith', isActive: false, role: 'Developer', email: 'bob.s@company.com' },
+          { id: 'emp003', name: 'Carol Martinez', isActive: true, role: 'Designer', email: 'carol.m@company.com' },
+          { id: 'emp004', name: 'David Lee', isActive: true, role: 'Developer', email: 'david.l@company.com' },
+          { id: 'emp005', name: 'Emma Wilson', isActive: false, role: 'QA', email: 'emma.w@company.com' },
+          { id: 'emp006', name: 'Frank Brown', isActive: true, role: 'DevOps', email: 'frank.b@company.com' },
+          { id: 'emp007', name: 'Grace Taylor', isActive: true, role: 'Manager', email: 'grace.t@company.com' },
+          { id: 'emp008', name: 'Henry Davis', isActive: false, role: 'Developer', email: 'henry.d@company.com' },
+          { id: 'emp009', name: 'Iris Anderson', isActive: true, role: 'Designer', email: 'iris.a@company.com' },
+          { id: 'emp010', name: 'Jack Thomas', isActive: true, role: 'Developer', email: 'jack.t@company.com' }
+        ];
+        
+        console.time('addOptions - Custom Fields (10 items)');
+        
+        const count = select.addOptions(employees);
+        
+        console.timeEnd('addOptions - Custom Fields (10 items)');
+        console.log(`Successfully added ${count} employees`);
+      };
+
+      // 28c: Load products with custom renderer
+      window.loadProductsData = function() {
+        const select = document.getElementById('bulk-products-select');
+        
+        // Clear and configure
+        select.clear();
+        select.configure({
+          valueField: 'sku',
+          textField: 'productName',
+          selectedField: 'featured',
+          disabledField: 'outOfStock',
+          extraDataFields: ['price', 'category', 'rating', 'stock'],
+          customRenderer: function(item) {
+            const rating = item.rating || 0;
+            const stars = '⭐'.repeat(Math.floor(rating));
+            
+            return `
+              <div class="flex items-center gap-3 w-full">
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold">${item.text}</div>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    ${rating ? `<span class="text-xs text-yellow-500">${stars}</span>` : ''}
+                    ${item.price ? `<span class="text-xs font-bold text-accent">$${item.price}</span>` : ''}
+                    ${item.category ? `<span class="text-xs opacity-60">${item.category}</span>` : ''}
+                  </div>
+                </div>
+                ${item.stock !== undefined ? `
+                  <span class="badge badge-xs ${item.stock > 0 ? 'badge-success' : 'badge-error'}">
+                    ${item.stock > 0 ? `${item.stock} left` : 'Out'}
+                  </span>
+                ` : ''}
+              </div>
+            `;
+          }
+        });
+        
+        // Generate 50 products
+        const products = [];
+        const categories = ['Electronics', 'Home & Garden', 'Sports', 'Books', 'Toys'];
+        const baseProducts = ['Widget', 'Gadget', 'Device', 'Tool', 'Kit'];
+        
+        console.time('addOptions - Custom Renderer (50 items)');
+        
+        for (let i = 1; i <= 50; i++) {
+          const price = (Math.random() * 200 + 10).toFixed(2);
+          const rating = Math.floor(Math.random() * 5) + 1;
+          const stock = Math.floor(Math.random() * 100);
+          
+          products.push({
+            sku: `PROD-${String(i).padStart(4, '0')}`,
+            productName: `${baseProducts[i % baseProducts.length]} ${i}`,
+            featured: i % 8 === 0, // Featured products
+            outOfStock: stock === 0,
+            price: price,
+            category: categories[i % categories.length],
+            rating: rating,
+            stock: stock
+          });
+        }
+        
+        const count = select.addOptions(products);
+        
+        console.timeEnd('addOptions - Custom Renderer (50 items)');
+        console.log(`Successfully added ${count} products`);
+      };
+    });
+
+    // Example 29: Configure custom renderers for data attribute examples
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 29a: Product ratings renderer
+      function renderProductRating(item) {
+        const rating = parseInt(item.rating) || 0;
+        const stars = '⭐'.repeat(rating);
+        
+        return `
+          <div class="flex items-center gap-3 w-full">
+            <span class="text-2xl">${item.icon || '📦'}</span>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              <div class="flex items-center gap-2 mt-0.5">
+                ${rating ? `<span class="text-xs text-yellow-500">${stars}</span>` : ''}
+                ${item.price ? `<span class="text-xs font-bold text-warning">${item.price}</span>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      // 29b: Team member renderer with avatar
+      function renderTeamMember(item) {
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${item.image ? `
+              <div class="avatar">
+                <div class="w-8 h-8 rounded-full">
+                  <img src="${item.image}" alt="${item.text}" />
+                </div>
+              </div>
+            ` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              ${item.role || item.email ? `
+                <div class="text-xs opacity-60 mt-0.5">
+                  ${item.role ? `${item.role}` : ''}
+                  ${item.role && item.email ? ' · ' : ''}
+                  ${item.email ? `${item.email}` : ''}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }
+      
+      // 29c: Country renderer with flag
+      function renderCountry(item) {
+        return `
+          <div class="flex items-center gap-3 w-full">
+            ${item.flag ? `<span class="text-2xl">${item.flag}</span>` : ''}
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold">${item.text}</div>
+              ${item.capital || item.population ? `
+                <div class="text-xs opacity-60 mt-0.5">
+                  ${item.capital ? `Capital: ${item.capital}` : ''}
+                  ${item.capital && item.population ? ' · ' : ''}
+                  ${item.population ? `Pop: ${item.population}` : ''}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }
+
+      // 29d: camelCase renderer - shows all attributes
+      function renderCamelCase(item) {
+        const attrs = Object.keys(item)
+          .filter(key => !['value', 'text', 'selected', 'disabled', 'index'].includes(key))
+          .map(key => `<code class="text-xs bg-base-300 px-1 rounded">${key}</code>`)
+          .join(' ');
+        
+        return `
+          <div class="flex flex-col gap-1 w-full">
+            <div class="font-semibold">${item.text}</div>
+            ${attrs ? `<div class="text-xs opacity-70">Attributes: ${attrs}</div>` : ''}
+          </div>
+        `;
+      }
+      
+      // Configure custom renderers for Example 29
+      const dataAttrProducts = document.getElementById('data-attr-products');
+      const dataAttrTeam = document.getElementById('data-attr-team');
+      const dataAttrCountries = document.getElementById('data-attr-countries');
+      const dataAttrCamelCase = document.getElementById('data-attr-camelcase');
+      
+      if (dataAttrProducts) {
+        dataAttrProducts.configure({ customRenderer: renderProductRating });
+      }
+      
+      if (dataAttrTeam) {
+        dataAttrTeam.configure({ customRenderer: renderTeamMember });
+      }
+      
+      if (dataAttrCountries) {
+        dataAttrCountries.configure({ customRenderer: renderCountry });
+      }
+
+      if (dataAttrCamelCase) {
+        dataAttrCamelCase.configure({ customRenderer: renderCamelCase });
+      }
+
+      // Function to display extracted data attributes
+      window.showDataAttributes = function(selectId, outputId) {
+        const select = document.getElementById(selectId);
+        const output = document.getElementById(outputId);
+        
+        if (!select || !output) return;
+        
+        // Access internal value dictionary to show all extracted data
+        const valueDict = select._valueDict;
+        const extractedData = {};
+        
+        for (let key in valueDict) {
+          const item = valueDict[key];
+          extractedData[item.value] = {
+            text: item.text,
+            selected: item.selected,
+            disabled: item.disabled,
+            dataAttributes: {}
+          };
+          
+          // Extract custom data attributes (exclude standard properties)
+          for (let prop in item) {
+            if (!['value', 'text', 'selected', 'disabled', 'optionEl', 'nativeOption', 'checkbox', 'index'].includes(prop)) {
+              extractedData[item.value].dataAttributes[prop] = item[prop];
+            }
+          }
+        }
+        
+        const pre = output.querySelector('pre');
+        pre.textContent = JSON.stringify(extractedData, null, 2);
+        output.classList.remove('hidden');
+      };
+    });
+  </script>
+</body>
+</html>
