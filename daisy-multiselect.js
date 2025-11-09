@@ -2393,58 +2393,38 @@ class DaisyMultiSelect extends HTMLElement {
       }
 
       /**
-       * Updates the custom renderer and re-renders all options.
-       * More explicit than using configure() for renderer changes.
-       * @param {Function} renderer - Renderer function or null to remove
-       * @public
-       * @example
-       * element.updateRenderer((itemData) => {
-       *   return `<div>${itemData.text} - ${itemData.price}</div>`;
-       * });
+       * Updates the custom renderer and re-renders all options (private).
+       * Use configure() for public API.
        */
-      updateRenderer(renderer) {
+      _updateRenderer(renderer) {
         if (renderer !== null && typeof renderer !== 'function') {
           console.error('updateRenderer: renderer must be a function or null');
           return;
         }
-        
         if (this._customRenderer === renderer) {
           this._log('Renderer unchanged, skipping update');
           return;
         }
-        
         this._log('Updating custom renderer');
         this._customRenderer = renderer;
-        
-        // Re-render all options with new renderer (or default if null)
         if (renderer) {
           this._reRenderAllOptions();
         } else {
-          // If removing renderer, just update cache (options already have default content)
           this._updateOptionsCache();
         }
       }
 
       /**
-       * Removes the custom renderer and reverts to default rendering.
-       * @public
-       * @example
-       * element.removeRenderer();
+       * Removes the custom renderer and reverts to default rendering (private).
        */
-      removeRenderer() {
-        this.updateRenderer(null);
+      _removeRenderer() {
+        this._updateRenderer(null);
       }
 
       /**
-       * Gets the current custom renderer function.
-       * @returns {Function|null} The current renderer function or null
-       * @public
-       * @example
-       * if (element.getRenderer()) {
-       *   console.log('Custom renderer is active');
-       * }
+       * Gets the current custom renderer function (private).
        */
-      getRenderer() {
+      _getRenderer() {
         return this._customRenderer || null;
       }
 
