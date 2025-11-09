@@ -1,4 +1,3 @@
-
 # Daisy Multi-Select Component
 
 Daisy Multi-Select is a highly customizable, feature-rich dropdown component inspired by DaisyUI and built with a focus on performance, accessibility, and developer flexibility. It supports native select integration, advanced styling, chip-based or comma-separated display, and a full public API for dynamic option management and custom rendering.
@@ -36,54 +35,127 @@ Register the component automatically:
 // Registration occurs at load: <daisy-multiselect> becomes usable immediately.
 customElements.define('daisy-multiselect', DaisyMultiSelect);
 ```
+
 No additional setup needed. The component auto-injects its required styles if not present.
 
 ---
 
-## Usage
+## Usage Examples
 
-Add Daisy Multi-Select directly to your HTML:
-
+### Basic Multi-Select
+Select multiple options from a static list of fruits.
 ```html
-<daisy-multiselect
-  placeholder="Select options..."
-  searchable
-  show-select-all
-  max-selections="3"
-  size="md"
-  checked-color="#3b82f6"
-  highlight
->
+<daisy-multiselect placeholder="Select your favorite fruits">
   <option value="apple">Apple</option>
-  <option value="banana" selected>Banana</option>
-  <option value="mango" disabled>Mango</option>
-  <option value="orange">Orange</option>
+  <option value="banana">Banana</option>
+  <option value="cherry">Cherry</option>
 </daisy-multiselect>
 ```
 
-### Basic Example
-
+### Pre-Selected Options
+Set default selections by adding `selected` to option tags.
 ```html
-<daisy-multiselect placeholder="Choose fruits" searchable show-select-all>
-  <option value="apple">Apple</option>
-  <option value="banana" selected>Banana</option>
-  <option value="mango">Mango</option>
+<daisy-multiselect placeholder="Select programming languages">
+  <option value="js" selected>JavaScript</option>
+  <option value="py" selected>Python</option>
+  <option value="java">Java</option>
 </daisy-multiselect>
 ```
 
-### Advanced Example (Chip-style, Color Customization)
-
+### Chip Style Display
+Display selected items as removable chips/badges.
 ```html
-<daisy-multiselect
-  placeholder="Tags"
-  highlight
-  size="lg"
-  checked-color="#ea580c"
-  required
->
-  <option value="urgent" selected>Urgent</option>
-  <option value="review">Needs Review</option>
-  <option value="archive" disabled>Archive</option>
+<daisy-multiselect placeholder="Select your tech stack" chip-style checked-color="primary">
+  <option value="react" selected>React</option>
+  <option value="vue" selected>Vue</option>
+  <option value="angular">Angular</option>
+</daisy-multiselect>
+```
+
+### Highlight Selected Items
+Color the entire chip/item background for selected values.
+```html
+<daisy-multiselect placeholder="Select frameworks" checked-color="primary" highlight>
+  <option value="react" selected>React</option>
+  <option value="vue">Vue</option>
+  <option value="angular">Angular</option>
+</daisy-multiselect>
+```
+
+### Input Colors and Sizes
+Customize border and input colors, and set component size.
+```html
+<daisy-multiselect placeholder="Large Primary Input, Accent Checkboxes" size="lg" input-color="primary" checked-color="accent">
+  <option value="1">Option 1</option>
+  <option value="2" selected>Option 2</option>
+</daisy-multiselect>
+```
+
+### Disabled Options
+Disable individual options to prevent selection.
+```html
+<daisy-multiselect placeholder="Select your skills" checked-color="primary">
+  <option value="js" selected>JavaScript</option>
+  <option value="react" disabled>React (Coming Soon)</option>
+  <option value="vue">Vue</option>
+</daisy-multiselect>
+```
+
+### Custom Renderer with Icons
+Render options with rich content like icons or avatars.
+```js
+const ms = document.getElementById('features-select');
+ms.configure({
+  customRenderer: (item) =>
+    `<svg class="w-5 h-5 mr-2">${item.icon}</svg>
+    <span>${item.text}</span>
+    <span class="badge">${item.category}</span>`
+});
+```
+
+### Select All / Deselect All Buttons
+Enable 'Select All' and 'Clear' actions in dropdown header.
+```html
+<daisy-multiselect show-select-all placeholder="Select programming languages">
+  <option value="js">JavaScript</option>
+  <option value="py">Python</option>
+</daisy-multiselect>
+```
+
+### Max Selections Limit
+Restrict user to a maximum of N selectable options.
+```html
+<daisy-multiselect max-selections="3" placeholder="Select up to 3 favorites">
+  <option value="pizza">Pizza</option>
+  <option value="burger">Burger</option>
+  <option value="sushi">Sushi</option>
+</daisy-multiselect>
+```
+
+### Event Listener
+Listen for selection changes and access selected values.
+```js
+const ms = document.getElementById('change-event-select');
+ms.addEventListener('change', (e) => {
+  console.log(e.detail.values); // Array of selected values
+  console.log(e.detail.valueString); // Delimited string of selected values
+});
+```
+
+### Runtime Option Management
+Add, remove, or select options programmatically.
+```js
+const ms = document.getElementById('runtime-select');
+ms.addOption("peach", "Peach");
+ms.selectByValue("initial3");
+ms.clearSelected();
+```
+
+### Virtual Scrolling for Large Datasets
+Render only visible options for high performance with long lists.
+```html
+<daisy-multiselect virtual-scroll searchable placeholder="Select from 100 items">
+  <!-- options 1 to 100 generated dynamically -->
 </daisy-multiselect>
 ```
 
@@ -91,279 +163,71 @@ Add Daisy Multi-Select directly to your HTML:
 
 ## Attributes
 
-| Attribute                  | Description                                          | Example                            |
-|----------------------------|------------------------------------------------------|------------------------------------|
-| placeholder                | Placeholder text                                     | `"Choose tags"`                    |
-| searchable                 | Enables search input                                 | `searchable`                       |
-| show-select-all            | Shows select-all/deselect-all buttons                | `show-select-all`                  |
-| max-selections             | Set maximum selections allowed                       | `max-selections="3"`               |
-| checked-color              | Checkbox color (named or hex)                        | `checked-color="#2563eb"`          |
-| size                       | DaisyUI size: xs, sm, md, lg, xl                     | `size="md"`                        |
-| highlight                  | Highlights selected options                          | `highlight`                        |
-| required                   | Marks selectable as required                         | `required`                         |
-| disabled                   | Disables input                                       | `disabled`                         |
-| virtual-scroll             | Enables virtual scrolling for large lists            | `virtual-scroll`                   |
-| virtual-scroll-threshold   | Threshold for enabling virtual scroll                | `virtual-scroll-threshold="80"`    |
-| delimiter                  | Value delimiter (default `,`)                        | `delimiter=";"`                    |
-| hide-clear                 | Hides clear button                                   | `hide-clear`                       |
-| chip-style                 | Chip-style display (default: enabled)                | `chip-style` or `no-chip-style`    |
-| name                       | Native select element name                           | `name="mytags"`                    |
-| class, style               | Custom classes/styles for host element               | `class="custom-select"`            |
-| single-select              | Restrict to single selection                         | `single-select`                    |
-| input-color                | DaisyUI color for input background                   | `input-color="info"`               |
-| chip-text-color            | Custom text color for chips                          | `chip-text-color="#eee"`           |
+| Attribute                | Type     | Description                                              | Default Value         |
+|--------------------------|----------|----------------------------------------------------------|----------------------|
+| placeholder              | string   | Placeholder text in input                                | "Select options..."  |
+| searchable               | boolean  | Enables search input                                     | false                |
+| show-select-all          | boolean  | Shows select-all/deselect-all buttons                    | false                |
+| max-selections           | number   | Maximum selections allowed                               | 0 (unlimited)        |
+| checked-color            | string   | Checkbox color (DaisyUI color name or hex)               | "primary"            |
+| size                     | enum     | DaisyUI size: xs, sm, md, lg, xl                         | "md"                 |
+| highlight                | boolean  | Highlights selected chips/options                        | false                |
+| required                 | boolean  | Marks component as required                              | false                |
+| disabled                 | boolean  | Disables entire component                                | false                |
+| virtual-scroll           | boolean  | Enables virtual scrolling for large lists                | false                |
+| virtual-scroll-threshold | number   | Threshold to auto-enable virtual scroll                  | 50                   |
+| delimiter                | string   | Delimiter for values                                     | ","                  |
+| hide-clear               | boolean  | Hides clear button                                       | false                |
+| chip-style               | boolean  | Chip-style display (default: enabled)                    | true                 |
+| name                     | string   | Name for native select for forms                         | ""                   |
+| class, style             | string   | Custom class/style for host element                      | ""                   |
+| single-select            | boolean  | Restrict to single selection                             | false                |
+| input-color              | string   | DaisyUI color for input background                       | unset (DaisyUI base) |
+| chip-text-color          | string   | Custom text color for chips                              | unset (auto)         |
 
 ---
 
 ## Public Methods & Examples
 
-### getSelectedValues
-Returns array of selected values.
-```js
-const values = multiselect.getSelectedValues();
-```
+- `getSelectedValues()`: Returns array of selected values.
+- `getSelectedTexts()`: Returns array of selected display texts.
+- `selectAll()`: Selects all enabled options.
+- `clearSelected()`: Deselects all options.
+- `addOption(value, text, selected = false, disabled = false, extraData = {})`: Adds a new option dynamically.
+- `addOptions(itemsArray, fieldConfig = {})`: Adds multiple options quickly with field mapping.
+- `removeOption(value)`: Removes an option by value.
+- `configure(options)`: Set custom renderer, value/text mapping, and more.
+- `open() / close() / toggle()`: Control dropdown visibility.
+- `isOpen()`: Returns boolean: is dropdown open.
+- `destroy()`: Call before removing from DOM to clean up.
+- `selectByValue(value)`: Select an option by value.
+- `deselectByValue(value)`: Deselect an option by value.
+- `selectByIndex(index)`: Select option by index.
+- `deselectByIndex(index)`: Deselect option by index.
+- `hasOption(value)`: Check if an option exists.
+- `getAllOptions()`: Get all option objects.
+- Setters/getters for properties like `value`, `enabled`, `required`, `delimiter`, `checkedColor`, `borderColor`, `chipStyle`, and `visible`.
+- `on(event, callback)`: Register lifecycle event callback.
+- `off(event, callback)`: Unregister lifecycle event callback.
 
-### getSelectedTexts
-Returns array of selected display texts.
-```js
-const texts = multiselect.getSelectedTexts();
-```
-
-### selectAll
-Selects all enabled options.
-```js
-multiselect.selectAll();
-```
-
-### clearSelected
-Deselects all options.
-```js
-multiselect.clearSelected();
-```
-
-### addOption(value, text, selected = false, disabled = false, extraData = {})
-Adds a new option dynamically.
-```js
-multiselect.addOption("peach", "Peach");
-multiselect.addOption("pear", "Pear", true, false, { description: "Green fruit" });
-```
-
-### addOptions(itemsArray, fieldConfig = {})
-Adds multiple options quickly with field mapping.
-```js
-multiselect.addOptions([
-  { id: "cherry", name: "Cherry", active: true, description: "Red fruit" },
-  { id: "plum", name: "Plum", active: false }
-], {
-  valueField: "id",
-  textField: "name",
-  selectedField: "active",
-  extraDataFields: ["description"]
-});
-```
-
-### removeOption(value)
-Removes an option by value.
-```js
-multiselect.removeOption("peach");
-```
-
-### configure(options)
-Set custom renderer, value/text mapping, and more.
-```js
-multiselect.configure({
-  customRenderer: item => `<b>${item.text}</b>`,
-  valueField: "myValue",
-  textField: "label",
-  selectedField: "chosen",
-  extraDataFields: ["note"]
-});
-```
-
-### open(), close(), toggle()
-Control dropdown visibility.
-```js
-multiselect.open();
-multiselect.close();
-multiselect.toggle();
-```
-
-### isOpen
-Returns boolean: is dropdown open.
-```js
-const open = multiselect.isOpen();
-```
-
-### destroy()
-Call before removing from DOM to clean up.
-```js
-multiselect.destroy();
-```
-
-### selectByValue(value)
-Select an option by value.
-```js
-multiselect.selectByValue("apple");
-```
-
-### deselectByValue(value)
-Deselect an option by value.
-```js
-multiselect.deselectByValue("apple");
-```
-
-### selectByIndex(index)
-Select option by index.
-```js
-multiselect.selectByIndex(1);
-```
-
-### deselectByIndex(index)
-Deselect option by index.
-```js
-multiselect.deselectByIndex(0);
-```
-
-### hasOption(value)
-Check if an option exists.
-```js
-const exists = multiselect.hasOption("apple");
-```
-
-### getAllOptions()
-Get all option objects.
-```js
-const allOptions = multiselect.getAllOptions();
-```
-
-### set value(Array|string)
-Set selected values.
-```js
-multiselect.value = ["apple", "pear"];
-```
-
-### get value()
-Get selected values (array).
-```js
-const vals = multiselect.value;
-```
-
-### set enabled(true|false)
-Enable or disable the component.
-```js
-multiselect.enabled = false;
-```
-
-### get enabled()
-Returns whether the component is enabled.
-```js
-const isEnabled = multiselect.enabled;
-```
-
-### set required(true|false)
-Set required state.
-```js
-multiselect.required = true;
-```
-
-### get required()
-Returns required state.
-```js
-const isRequired = multiselect.required;
-```
-
-### set delimiter(string)
-Set the delimiter for values.
-```js
-multiselect.delimiter = ";";
-```
-
-### get delimiter()
-Get the current value delimiter.
-```js
-const delimiter = multiselect.delimiter;
-```
-
-### set checkedColor(string)
-Set the checked color for checkboxes.
-```js
-multiselect.checkedColor = "#ff6600";
-```
-
-### get checkedColor()
-Get the current checked color.
-```js
-const color = multiselect.checkedColor;
-```
-
-### set borderColor(string|null)
-Set border color (named or hex).
-```js
-multiselect.borderColor = "primary";
-multiselect.borderColor = "#caf";
-multiselect.borderColor = null;
-```
-
-### get borderColor()
-Get border color.
-```js
-const color = multiselect.borderColor;
-```
-
-### set chipStyle(true|false)
-Toggle chip-style display.
-```js
-multiselect.chipStyle = true;
-```
-
-### get chipStyle()
-Returns chip-style mode.
-```js
-const isChipStyle = multiselect.chipStyle;
-```
-
-### get visible() / set visible(true|false)
-Component visibility.
-```js
-multiselect.visible = false;
-```
-
-### on(event, callback)
-Register lifecycle event callback.
-```js
-multiselect.on("onSetupComplete", e => console.log("Ready!", e));
-```
-
-### off(event, callback)
-Unregister lifecycle event callback.
-```js
-multiselect.off("onSetupComplete", myCallback);
-```
+See the earlier text for detailed usage examples of each method.
 
 ---
 
 ## Events
 
 | Event         | Description                       |
-|---------------|-----------------------------------|
-| change        | Fired when selection changes      |
-| error         | Fired on internal error           |
+|---------------|---------------------------------|
+| change        | Fired when selection changes     |
+| error         | Fired on internal error          |
 | open/close    | Fired when dropdown is opened/closed |
-| onSetupStart/onSetupComplete | Lifecycle hooks    |
-
-**Usage Example:**
-```js
-const multiselect = document.querySelector('daisy-multiselect');
-multiselect.onchange = (e) => {
-    console.log(e.detail.values); // Selected values
-};
-```
+| onSetupStart/onSetupComplete | Lifecycle hooks       |
 
 ---
 
 ## Custom Rendering
 
-Integrate icons, badges, descriptions or fully custom templates using `configure`:
+Integrate icons, badges, descriptions, or fully custom templates using `configure`:
 
 ```js
 multiselect.configure({
@@ -381,18 +245,6 @@ multiselect.configure({
 });
 ```
 
-You can also remap option fields for bulk data integration from external sources.
-
----
-
-## Styling, Accessibility & UX
-
-- Auto-injected CSS isolates the component layout from external changes.
-- DaisyUI theme colors: primary, secondary, accent, success, warning, error, info, neutral, or any custom HEX.
-- Responsive, with chip display growing vertically and selectable by keyboard alone for full accessibility.
-- ARIA attributes, hidden native `<select>` for fallback.
-- Performance: GPU acceleration, CSS containment, requestAnimationFrame batching, microtask updates.
-
 ---
 
 ## License, Credits, Compatibility
@@ -405,20 +257,8 @@ You can also remap option fields for bulk data integration from external sources
 
 ## Contributing
 
-PRs, bug reports, feature suggestions, and UX improvements always welcome. Please read the [CONTRIBUTING.md] before submitting issues or code.
+PRs, bug reports, feature suggestions, and UX improvements are always welcome. Please read the CONTRIBUTING.md before submission.
 
 ---
 
-## Changelog
-
-See [CHANGELOG.md] for version history, new features, and UX enhancements.
-
----
-
-## Support
-
-Open an issue on GitHub or reach out via the Discussions tab.
-
----
-
-Ready to empower your forms with flexible, beautiful multi-select? Start today!
+Please save this content as `README.md` in your project root to have full documentation.
