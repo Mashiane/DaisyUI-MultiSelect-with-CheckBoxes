@@ -40,9 +40,9 @@ No additional setup needed. The component auto-injects its required styles if no
 
 ---
 
-## Usage Examples
+## Unique Usage Examples
 
-### Basic Multi-Select
+### 1. Basic Multi-Select
 Select multiple options from a static list of fruits.
 ```html
 <daisy-multiselect placeholder="Select your favorite fruits">
@@ -52,8 +52,8 @@ Select multiple options from a static list of fruits.
 </daisy-multiselect>
 ```
 
-### Pre-Selected Options
-Set default selections by adding `selected` to option tags.
+### 2. Pre-Selected Options
+Set default selections by adding `selected` attribute.
 ```html
 <daisy-multiselect placeholder="Select programming languages">
   <option value="js" selected>JavaScript</option>
@@ -62,8 +62,8 @@ Set default selections by adding `selected` to option tags.
 </daisy-multiselect>
 ```
 
-### Chip Style Display
-Display selected items as removable chips/badges.
+### 3. Chip Style Display
+Display selected items as removable chips/badges with close buttons.
 ```html
 <daisy-multiselect placeholder="Select your tech stack" chip-style checked-color="primary">
   <option value="react" selected>React</option>
@@ -72,8 +72,8 @@ Display selected items as removable chips/badges.
 </daisy-multiselect>
 ```
 
-### Highlight Selected Items
-Color the entire chip/item background for selected values.
+### 4. Highlight Selected Items
+Color the entire chip or item background for selected values.
 ```html
 <daisy-multiselect placeholder="Select frameworks" checked-color="primary" highlight>
   <option value="react" selected>React</option>
@@ -82,8 +82,8 @@ Color the entire chip/item background for selected values.
 </daisy-multiselect>
 ```
 
-### Input Colors and Sizes
-Customize border and input colors, and set component size.
+### 5. Input Colors and Sizes
+Customize the input field colors and sizes.
 ```html
 <daisy-multiselect placeholder="Large Primary Input, Accent Checkboxes" size="lg" input-color="primary" checked-color="accent">
   <option value="1">Option 1</option>
@@ -91,8 +91,8 @@ Customize border and input colors, and set component size.
 </daisy-multiselect>
 ```
 
-### Disabled Options
-Disable individual options to prevent selection.
+### 6. Disabled Options
+Disable certain options in the dropdown.
 ```html
 <daisy-multiselect placeholder="Select your skills" checked-color="primary">
   <option value="js" selected>JavaScript</option>
@@ -101,62 +101,93 @@ Disable individual options to prevent selection.
 </daisy-multiselect>
 ```
 
-### Custom Renderer with Icons
-Render options with rich content like icons or avatars.
-```js
-const ms = document.getElementById('features-select');
-ms.configure({
-  customRenderer: (item) =>
-    `<svg class="w-5 h-5 mr-2">${item.icon}</svg>
-    <span>${item.text}</span>
-    <span class="badge">${item.category}</span>`
-});
+### 7. Checkbox Colors
+Use DaisyUI color names or HEX codes for checkbox colors.
+```html
+<daisy-multiselect checked-color="success">
+  <option value="item1">Item 1</option>
+  <option value="item2" selected>Item 2</option>
+</daisy-multiselect>
 ```
 
-### Select All / Deselect All Buttons
-Enable 'Select All' and 'Clear' actions in dropdown header.
+### 8. Chip Text Color
+Customize the text color inside the chips.
 ```html
-<daisy-multiselect show-select-all placeholder="Select programming languages">
+<daisy-multiselect chip-text-color="#ff0" chip-style checked-color="error">
+  <option value="alert" selected>Alert</option>
+  <option value="info">Info</option>
+</daisy-multiselect>
+```
+
+### 9. Runtime Option Management
+Add, remove, select, and clear options programmatically.
+```js
+const multiselect = document.getElementById('runtime-select');
+multiselect.addOption('peach', 'Peach');
+multiselect.selectByValue('peach');
+multiselect.removeOption('peach');
+multiselect.clearSelected();
+```
+
+### 10. Searchable Dropdown
+Enable search functionality.
+```html
+<daisy-multiselect searchable placeholder="Search fruits">
+  <option value="apple">Apple</option>
+  <option value="banana">Banana</option>
+  <option value="cherry">Cherry</option>
+</daisy-multiselect>
+```
+
+### 11. Select All / Clear Buttons
+Show buttons for selecting/deselecting all options.
+```html
+<daisy-multiselect show-select-all placeholder="Select all languages">
   <option value="js">JavaScript</option>
   <option value="py">Python</option>
 </daisy-multiselect>
 ```
 
-### Max Selections Limit
-Restrict user to a maximum of N selectable options.
+### 12. Max Selections Limit
+Limit the number of selectable options.
 ```html
-<daisy-multiselect max-selections="3" placeholder="Select up to 3 favorites">
-  <option value="pizza">Pizza</option>
-  <option value="burger">Burger</option>
-  <option value="sushi">Sushi</option>
+<daisy-multiselect max-selections="3" placeholder="Choose up to 3 toppings">
+  <option value="pepperoni">Pepperoni</option>
+  <option value="mushroom">Mushroom</option>
+  <option value="onion">Onion</option>
 </daisy-multiselect>
 ```
 
-### Event Listener
-Listen for selection changes and access selected values.
+### 13. Virtual Scrolling
+Enable performance optimization for large lists.
+```html
+<daisy-multiselect virtual-scroll searchable placeholder="Select from a large list">
+  <!-- 100+ options here dynamically generated -->
+</daisy-multiselect>
+```
+
+### 14. Custom Renderer with Data Attributes
+Use data attributes to enrich options and customize their render.
+```html
+<daisy-multiselect placeholder="Select your contacts" chip-style>
+  <option value="john" data-avatar-url="avatars/john.png" data-position="Manager">John Doe</option>
+  <option value="jane" data-avatar-url="avatars/jane.png" data-position="Developer">Jane Smith</option>
+</daisy-multiselect>
+```
+
 ```js
-const ms = document.getElementById('change-event-select');
-ms.addEventListener('change', (e) => {
-  console.log(e.detail.values); // Array of selected values
-  console.log(e.detail.valueString); // Delimited string of selected values
+multiselect.configure({
+  customRenderer: item => `
+    <div class="flex gap-2 items-center">
+      <img src="${item.extra.avatarUrl}" alt="avatar" class="w-5 h-5 rounded-full" />
+      <div>
+        <div>${item.text}</div>
+        <div class="text-xs text-gray-500">${item.extra.position}</div>
+      </div>
+    </div>
+  `,
+  extraDataFields: ['avatarUrl', 'position']
 });
-```
-
-### Runtime Option Management
-Add, remove, or select options programmatically.
-```js
-const ms = document.getElementById('runtime-select');
-ms.addOption("peach", "Peach");
-ms.selectByValue("initial3");
-ms.clearSelected();
-```
-
-### Virtual Scrolling for Large Datasets
-Render only visible options for high performance with long lists.
-```html
-<daisy-multiselect virtual-scroll searchable placeholder="Select from 100 items">
-  <!-- options 1 to 100 generated dynamically -->
-</daisy-multiselect>
 ```
 
 ---
@@ -210,8 +241,6 @@ Render only visible options for high performance with long lists.
 - `on(event, callback)`: Register lifecycle event callback.
 - `off(event, callback)`: Unregister lifecycle event callback.
 
-See the earlier text for detailed usage examples of each method.
-
 ---
 
 ## Events
@@ -222,28 +251,6 @@ See the earlier text for detailed usage examples of each method.
 | error         | Fired on internal error          |
 | open/close    | Fired when dropdown is opened/closed |
 | onSetupStart/onSetupComplete | Lifecycle hooks       |
-
----
-
-## Custom Rendering
-
-Integrate icons, badges, descriptions, or fully custom templates using `configure`:
-
-```js
-multiselect.configure({
-  customRenderer: item => `
-    <div class="flex items-center gap-2">
-      <img src="icons/${item.value}.svg" class="w-5 h-5" />
-      <span>${item.text}</span>
-      <span class="text-xs opacity-60">${item.description || ''}</span>
-    </div>
-  `,
-  valueField: 'id',
-  textField: 'name',
-  selectedField: 'isActive',
-  extraDataFields: ['description']
-});
-```
 
 ---
 
